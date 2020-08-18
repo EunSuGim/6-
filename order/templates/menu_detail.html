@@ -80,14 +80,31 @@
     	<div class="container">
     		<div class="row">
     			<div class="col-lg-6 mb-5 ftco-animate">
-    				<a href="images/menu-2.jpg" class="image-popup"><img src="/static/images/menu-2.jpg" class="img-fluid" alt="Colorlib Template"></a>
+    				<a href="images/menu-2.jpg" class="image-popup"><img src="/static/images/{{ product }}/{{ list.cd }}.jpg" class="img-fluid" alt="Colorlib Template"></a>
     			</div>
     			<div class="col-lg-6 product-details pl-md-5 ftco-animate">
-    				<h3>Creamy Latte Coffee</h3>
-    				<p class="price"><span>$4.90</span></p>
-    				<p>A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth.</p>
-    				<p>On her way she met a copy. The copy warned the Little Blind Text, that where it came from it would have been rewritten a thousand times and everything that was left from its origin would be the word "and" and the Little Blind Text should turn around and return to its own, safe country. But nothing the copy said could convince her and so it didn’t take long until a few insidious Copy Writers ambushed her, made her drunk with Longe and Parole and dragged her into their agency, where they abused her for their.
-						</p>
+    				<h3>{{ list.name }}</h3>
+    				<p class="price"><span>{{list.price}}</span></p>
+    				<p>{{ list.text }}</p>
+                    {% if product == "coffee" %}
+
+                    <row>
+                        <p>칼로리 : {{ list.kcal }}</p><p>당 : {{ list.sugars }}</p><p>fat : {{ list.fat }}</p>
+                        <p>{{ list.allergy }}</p>
+                    </row>
+
+                    {% elif product == "desserts" %}
+
+                    <row>
+                        <p>그램 : {{ list.gram }}</p><p>{{ list.allergy }}</p>
+                    </row>
+
+                    {% else %}
+
+
+                    {% endif %}
+
+
 						<div class="row mt-4">
 							<div class="col-md-6">
 								<div class="form-group d-flex">

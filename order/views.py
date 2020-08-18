@@ -21,19 +21,30 @@ def c_detail(request, product_cd):
     else:
         coffee = get_object_or_404(Coffee, cd= product_cd)
 
-        context = {"coffee" : coffee}
+        product = "coffee"
+
+        context = {"list" : coffee,"product" : product}
         return render(request, 'menu_detail.html',context)
 
 def d_detail(request, product_cd):
     if request == "POST":
         redirect("menu_detail.html")
     else:
+        desserts = get_object_or_404(Desserts, cd= product_cd)
 
-        return render(request, 'menu_detail.html')
+        product = "desserts"
+
+        context = {"list" : desserts, "product" : product}
+
+        return render(request, 'menu_detail.html', context)
 
 def g_detail(request, product_cd):
     if request == "POST":
         redirect("menu_detail.html")
     else:
+        goods = get_object_or_404(Goods, cd= product_cd)
 
-        return render(request, 'menu_detail.html')
+        product = "goods"
+
+        context = {"list" : goods, "product" : product}
+        return render(request, 'menu_detail.html', context)

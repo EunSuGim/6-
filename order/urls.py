@@ -18,10 +18,8 @@ from django.urls import path, include
 from django.conf.urls import url
 from django.views.generic.base import TemplateView
 
+app_name = 'order'
+urlpatterns = [ #김은수
+    path('menu',views.menu, name='menu')
 
-urlpatterns = [
-    url(r"^$", TemplateView.as_view(template_name="index.html"), name="home"),
-    path('admin/', admin.site.urls),
-    path("membership/", include("membership.urls")),
-    path('order/',include("order.urls")) #김은수
 ]

@@ -38,7 +38,6 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     "membership.apps.MembershipConfig"
-    "order.apps.OrderConfig" #김은수
 ]
 
 MIDDLEWARE = [

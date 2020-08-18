@@ -37,7 +37,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    "membership.apps.MembershipConfig"
+    "membership.apps.MembershipConfig",
+    'order.apps.OrderConfig',
+    'bootstrap4'
 ]
 
 MIDDLEWARE = [

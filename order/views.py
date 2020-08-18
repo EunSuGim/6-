@@ -15,3 +15,8 @@ def menu(request):
         return render(request, 'menu.html',context)
 
 
+def detail(request, product_id):
+    if request == "POST":
+        redirect("menu_detail.html")
+    else:
+        return render(request, 'menu_detail.html')

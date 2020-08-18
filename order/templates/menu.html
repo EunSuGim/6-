@@ -109,12 +109,12 @@
 							{% for cof in coffee %}
 		              		<div class="col-md-4 text-center">
 		              			<div class="menu-wrap">
-		              				<a href="#" class="menu-img img mb-4" style="background-image: url(/static/images/coffee/{{ cof.cd }}.jpg);"></a>
+		              				<a href="{% url 'order:detail' cof.cd %}" class="menu-img img mb-4" style="background-image: url(/static/images/coffee/{{ cof.cd }}.jpg);"></a>
 		              				<div class="text">
-		              					<h3><a href="#">{{ cof.name }}</a></h3>
+		              					<h3><a href="{% url 'order:detail' cof.cd %}">{{ cof.name }}</a></h3>
 		              					<p>{{ cof.text }}</p>
 		              					<p class="price"><span>{{ cof.price }}</span></p>
-		              					<p><a href="#" class="btn btn-primary btn-outline-primary">Add to cart</a></p>
+		              					<p><a href="{% url 'order:detail' cof.id %}" class="btn btn-primary btn-outline-primary">Add to cart</a></p>
 		              				</div>
 		              			</div>
 		              		</div>
@@ -128,9 +128,9 @@
                             {% for des in desserts%}
 		              		<div class="col-md-4 text-center">
 		              			<div class="menu-wrap">
-		              				<a href="#" class="menu-img img mb-4" style="background-image: url(/static/images/desserts/{{ des.cd }}.jpg);"></a>
+		              				<a href="{% url 'order:detail' des.cd %}" class="menu-img img mb-4" style="background-image: url(/static/images/desserts/{{ des.cd }}.jpg);"></a>
 		              				<div class="text">
-		              					<h3><a href="#">{{ des.name }}</a></h3>
+		              					<h3><a href="{% url 'order:detail' des.cd %}">{{ des.name }}</a></h3>
 		              					<p>{{ des.text }}</p>
 		              					<p class="price"><span>{{ des.price }}</span></p>
 		              					<p><a href="#" class="btn btn-primary btn-outline-primary">Add to cart</a></p>
@@ -147,9 +147,9 @@
                             {% for god in goods %}
 		              		<div class="col-md-4 text-center">
 		              			<div class="menu-wrap">
-		              				<a href="#" class="menu-img img mb-4" style="background-image: url(/static/images/goods/{{ god.cd }}.jpg);"></a>
+		              				<a href="{% url 'order:detail' god.cd %}" class="menu-img img mb-4" style="background-image: url(/static/images/goods/{{ god.cd }}.jpg);"></a>
 		              				<div class="text">
-		              					<h3><a href="#">{{ god.name }}</a></h3>
+		              					<h3><a href="{% url 'order:detail' god.cd %}">{{ god.name }}</a></h3>
 		              					<p>{{ god.text }}</p>
 		              					<p class="price"><span>{{ god.price }}</span></p>
 		              					<p><a href="#" class="btn btn-primary btn-outline-primary">Add to cart</a></p>

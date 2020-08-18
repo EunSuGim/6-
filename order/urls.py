@@ -22,5 +22,6 @@ from order import views
 app_name = 'order'
 
 urlpatterns = [
-    path('menu', views.menu, name='menu')
+    path('menu', views.menu, name='menu'),
+    path('<int:product_id>/detail', views.detail, name='detail'), #detail_url 추가 김은수
 ]

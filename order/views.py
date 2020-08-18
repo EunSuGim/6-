@@ -15,8 +15,25 @@ def menu(request):
         return render(request, 'menu.html',context)
 
 
-def detail(request, product_id):
+def c_detail(request, product_cd):
     if request == "POST":
         redirect("menu_detail.html")
     else:
+        coffee = get_object_or_404(Coffee, cd= product_cd)
+
+        context = {"coffee" : coffee}
+        return render(request, 'menu_detail.html',context)
+
+def d_detail(request, product_cd):
+    if request == "POST":
+        redirect("menu_detail.html")
+    else:
+
+        return render(request, 'menu_detail.html')
+
+def g_detail(request, product_cd):
+    if request == "POST":
+        redirect("menu_detail.html")
+    else:
+
         return render(request, 'menu_detail.html')

@@ -23,5 +23,7 @@ app_name = 'order'
 
 urlpatterns = [
     path('menu', views.menu, name='menu'),
-    path('<int:product_id>/detail', views.detail, name='detail'), #detail_url 추가 김은수
+    path('coffee/<int:product_cd>/detail', views.c_detail, name='c_detail'), #detail_url 추가 김은수
+    path('desserts/<int:product_cd>/detail', views.d_detail, name='d_detail'), #detail_url 추가 김은수
+    path('goods/<int:product_cd>/detail', views.g_detail, name='g_detail'), #detail_url 추가 김은수
 ]

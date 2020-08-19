@@ -8,7 +8,7 @@ import math
 
 # menu 함수 작성 김은수
 def menu(request):
-    if request == "POST":
+    if request.method == "POST":
         redirect("menu.html")
     else:
         coffee = Coffee.objects.all()
@@ -21,32 +21,37 @@ def menu(request):
 
 
 def detail(request, product_cd):
-    if request == "POST":
-        redirect("menu_detail.html")
+    if request.method == "POST":
+        category = request.GET['kind'].capitalize()
+        print(category)
+        product = get_object_or_404(category, cd=product_cd)
+
+        return redirect("order:cart")
     else:
+
         if request.GET['kind'] == 'desserts':
 
             product = get_object_or_404(Desserts, cd=product_cd)
 
-            product_name = "desserts"
+            category = "desserts"
 
         elif request.GET['kind'] == 'coffee':
 
             product = get_object_or_404(Coffee, cd=product_cd)
 
-            product_name = "coffee"
+            category = "coffee"
         else:
 
             product = get_object_or_404(Goods, cd=product_cd)
 
-            product_name = "goods"
+            category = "goods"
 
-        context = {"list": product, "product_name": product_name}
+        context = {"list": product, "category": category }
         return render(request, 'menu_detail.html', context)
 
 
 def cart(request):
-    if request == "POST":
+    if request.method == "POST":
         redirect("cart.html")
 
     else:

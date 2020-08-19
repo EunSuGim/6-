@@ -1,4 +1,5 @@
 from django.db import models
+from accounts.models import User
 
 
 #coffee,desserts,goods 모델 추가 김은수
@@ -48,5 +49,9 @@ class Goods(models.Model):
         managed = False
         db_table = 'Goods'
 
-class carts(models.Model):
-    pass
+class Carts(models.Model):
+    user_id = models.ForeignKey(User, on_delete=models.CASCADE,null=True)
+    name = models.CharField('상품명',max_length=20,null=True)
+    price = models.IntegerField('가격',default=0)
+    quantity = models.IntegerField('수량',default=0)
+    total = models.IntegerField('총가격',default=0)

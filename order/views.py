@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from order.models import Coffee, Desserts, Goods
+from order.models import Coffee, Desserts, Goods, Carts
+from accounts.models import User
 from django.core.paginator import Paginator
 import math
 
@@ -19,12 +20,15 @@ def menu(request):
                    }
         return render(request, 'menu.html', context)
 
-
+#상세보기 함수 김은수
 def detail(request, product_cd):
     if request.method == "POST":
         category = request.GET['kind'].capitalize()
-        print(category)
+        user = request.session['user_n']
+        print(user)
         product = get_object_or_404(category, cd=product_cd)
+
+        cart = Carts()
 
         return redirect("order:cart")
     else:
@@ -49,7 +53,7 @@ def detail(request, product_cd):
         context = {"list": product, "category": category }
         return render(request, 'menu_detail.html', context)
 
-
+#장바구니 함수 김은수
 def cart(request):
     if request.method == "POST":
         redirect("cart.html")

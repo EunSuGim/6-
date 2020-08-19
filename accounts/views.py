@@ -35,14 +35,14 @@ def sign_up(request):
                 user = User(user_id=request.POST['user_id'], password=request.POST['password1'],
                             user_name=request.POST['user_name'], phone_num=request.POST['phone_num'])
                 user.save()
-                request.session['user_id'] = user_id
-                request.session['check'] = 1    # 로그인 성공시 화면 넘어가기
+                # request.session['user_id'] = user_id
+                # request.session['check'] = 1    # 회원가입 성공시 화면 home 으로 넘어가기
 
-
-                return redirect('/')
+                return redirect('/accounts/login/')
         else:
-            print('이미존재하는 아이디입니다')
-            return redirect('/accounts/signup/')
+            print('이미 존재하는 아이디 입니다.')
+
+            # return redirect('/accounts/signup/')
     # signup으로 GET 요청이 왔을 때, 회원가입 화면을 띄워준다.
     return render(request, 'signup.html')
 

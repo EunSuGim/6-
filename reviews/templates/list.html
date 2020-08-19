@@ -33,86 +33,88 @@
   <body>
   	<nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
 	    <div class="container">
-	      <a class="navbar-brand" href="index.html">Coffee<small>Blend</small></a>
+	      <a class="navbar-brand" href="/">Coffee<small>Blend</small></a>
 	      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
 	        <span class="oi oi-menu"></span> Menu
 	      </button>
-                <div class="collapse navbar-collapse" id="ftco-nav">
-                  <ul class="navbar-nav ml-auto">
-                    <li class="nav-item active"><a href="/starbucks/index" class="nav-link">Home</a></li>
-                    <li class="nav-item"><a href="menu.html" class="nav-link">Menu</a></li>
-                    <li class="nav-item"><a href="membership/information" class="nav-link">My Starbucks</a></li>
-                    <li class="nav-item"><a href="blog.html" class="nav-link">Blog</a></li>
-                  <!-- 아인 -->
-                      {% if request.session.check == 1 %}
-                    <li class="nav-item"><a href="accounts/cash" class="nav-link">Cash</a></li>
-                    <li class="nav-item"><a href="accounts/logout" class="nav-link">Logout</a></li>
-                    <li class="nav-item cart"><a href="cart.html" class="nav-link"><span class="icon icon-shopping_cart"></span><span class="bag d-flex justify-content-center align-items-center"><small>1</small></span></a></li>
-                      {% else %}
-                    <li class="nav-item"><a href="/accounts/login" class="nav-link">Login</a></li>
-                    <li class="nav-item"><a href="/accounts/signup" class="nav-link">Signup</a></li>
-                      {% endif %}
-                  </ul>
-              </div>
+	      <div class="collapse navbar-collapse" id="ftco-nav">
+	        <ul class="navbar-nav ml-auto">
+                <li class="nav-item active"><a href="/starbucks/index" class="nav-link">Home</a></li>
+                <li class="nav-item"><a href="menu.html" class="nav-link">Menu</a></li>
+                <li class="nav-item"><a href="membership/information" class="nav-link">My Starbucks</a></li>
+                <li class="nav-item"><a href="reviews/list" class="nav-link">Reviews</a></li>
+              <!-- 아인 -->
+                  {% if request.session.check == 1 %}
+                <li class="nav-item"><a href="accounts/cash" class="nav-link">Cash</a></li>
+                <li class="nav-item"><a href="accounts/logout" class="nav-link">Logout</a></li>
+                <li class="nav-item cart"><a href="cart.html" class="nav-link"><span class="icon icon-shopping_cart"></span><span class="bag d-flex justify-content-center align-items-center"><small>1</small></span></a></li>
+                  {% else %}
+                <li class="nav-item"><a href="/accounts/login" class="nav-link">Login</a></li>
+                <li class="nav-item"><a href="/accounts/signup" class="nav-link">Signup</a></li>
+                  {% endif %}
+	        </ul>
+	      </div>
 		  </div>
 	  </nav>
     <!-- END nav -->
 
     <section class="home-slider owl-carousel">
 
-      <div class="slider-item" style="background-image: url(/static/images/accounts_login.jpg);" data-stellar-background-ratio="0.5">
+      <div class="slider-item" style="background-image: url(/static/images/reviews_list.jpg);" data-stellar-background-ratio="0.5">
       	<div class="overlay"></div>
         <div class="container">
           <div class="row slider-text justify-content-center align-items-center">
 
             <div class="col-md-7 col-sm-12 text-center ftco-animate">
-            	<h1 class="mb-3 mt-5 bread">Log In</h1>
-	            <p class="breadcrumbs">
-<!--                    <span class="mr-2"><a href="signup.html">Sign Up</a></span></p>-->
+            	<h1 class="mb-3 mt-5 bread">Voice of Customers</h1>
+	            <p class="breadcrumbs"><span class="mr-2"><a href="/reviews/create">새 글 작성</a></span>
             </div>
           </div>
         </div>
       </div>
     </section>
 
-        <section class="ftco-section contact-section">
-        <div class="container mt-5">
-        <div class="row block-9">
 
-					<div class="col-md-4 contact-info ftco-animate">
-						<div class="row">
-							<div class="col-md-12 mb-4">
-	                        <h2 class="h4">Log in</h2>
-	                        </div>
-						</div>
-					</div>
-					<div class="col-md-1"></div>
-
-          <div class="col-md-6 ftco-animate">
-            <form action="#" class="contact-form" method="POST">
-                {% csrf_token %}
-              <div class="form-group">
-                <input name="user_id" type="text" class="form-control" placeholder="ID">
+    <section class="ftco-section">
+        {% for post in reviews %}
+      <div class="container">
+        <div class="row d-flex">
+          <div class="col-md-4 d-flex ftco-animate">
+          	<div class="blog-entry align-self-stretch">
+              <a href="blog-single.html" class="block-20" style="background-image: url('/static/images/image_1.jpg');">
+              </a>
+              <div class="text py-4 d-block">
+              	<div class="meta">
+                  <div><a href="#">{{ post.created_date }}</a></div>
+                  <div><a href="#">{{ post.author }}</a></div>
+                  <div><a href="#" class="meta-chat"><span class="icon-chat"></span> 3</a></div>
+                </div>
+                <h3 class="heading mt-2"><a href="#">{{ post.title }}</a></h3>
+                <p><a href="#">{{ post.contents }}</a></p>
               </div>
-              <div class="form-group">
-                <input name="password" type="password" class="form-control" placeholder="PW">
-              </div>
-              <div class="form-group">
-                <input type="submit" value="Log In" class="btn btn-primary py-3 px-5">
-              </div>
-                <div class="form-group">
-
-                <a href="/accounts/signup/" class="btn btn-primary py-3 px-5">Sign Up</a>
-              </div>
-            </form>
+            </div>
           </div>
-
+        </div>
+      </div>
+        {% endfor %}
+        <div class="row mt-5">
+          <div class="col text-center">
+            <div class="block-27">
+              <ul>
+                <li><a href="#">&lt;</a></li>
+                <li class="active"><span>1</span></li>
+                <li><a href="#">2</a></li>
+                <li><a href="#">3</a></li>
+                <li><a href="#">4</a></li>
+                <li><a href="#">5</a></li>
+                <li><a href="#">&gt;</a></li>
+              </ul>
+            </div>
+          </div>
         </div>
       </div>
     </section>
 
-
-    <div id="map"></div>
 
     <footer class="ftco-footer ftco-section img">
     	<div class="overlay"></div>
@@ -133,7 +135,7 @@
             <div class="ftco-footer-widget mb-4">
               <h2 class="ftco-heading-2">Recent Blog</h2>
               <div class="block-21 mb-4 d-flex">
-                <a class="blog-img mr-4" style="background-image: url(static/images/image_1.jpg);"></a>
+                <a class="blog-img mr-4" style="background-image: url(/static/images/image_1.jpg);"></a>
                 <div class="text">
                   <h3 class="heading"><a href="#">Even the all-powerful Pointing has no control about</a></h3>
                   <div class="meta">
@@ -144,7 +146,7 @@
                 </div>
               </div>
               <div class="block-21 mb-4 d-flex">
-                <a class="blog-img mr-4" style="background-image: url(static/images/image_2.jpg);"></a>
+                <a class="blog-img mr-4" style="background-image: url(/static/images/image_2.jpg);"></a>
                 <div class="text">
                   <h3 class="heading"><a href="#">Even the all-powerful Pointing has no control about</a></h3>
                   <div class="meta">

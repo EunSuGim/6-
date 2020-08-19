@@ -23,12 +23,28 @@ def menu(request):
 #상세보기 함수 김은수
 def detail(request, product_cd):
     if request.method == "POST":
-        category = request.GET['kind'].capitalize()
-        user = request.session['user_n']
-        print(user)
-        product = get_object_or_404(category, cd=product_cd)
+        category = request.GET['kind']
+        user_id = request.session['user_id']
+        quantity = int(request.POST["quantity"])
+        session = get_object_or_404(User, user_id=user_id)
 
-        cart = Carts()
+        if category == "coffee":
+            product = get_object_or_404(Coffee, cd=product_cd)
+        elif category == "desserts":
+            product = get_object_or_404(Desserts, cd=product_cd)
+        else :
+            product = get_object_or_404(Goods, cd=product_cd)
+
+        cart = Carts(user_id=session)
+
+        print(type(product.price))
+
+        cart.name = product.name
+        cart.price = product.price
+        cart.quantity = quantity
+        cart.total = product.price * quantity
+
+        cart.save()
 
         return redirect("order:cart")
     else:
@@ -59,6 +75,12 @@ def cart(request):
         redirect("cart.html")
 
     else:
+        user_id = request.session['user_id']
+        my_cart =Carts.objects.filter(user_id=user_id)
+        context = {"cart" : my_cart}
+
+        return render(request,'cart.html',context)
+
         return render(request, 'cart.html')
 
 # def paging(request, list):

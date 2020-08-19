@@ -35,7 +35,7 @@ def detail(request, product_cd):
         else :
             product = get_object_or_404(Goods, cd=product_cd)
 
-        cart = Carts(user_id=session)
+        cart = Carts(identity=session)
 
         print(type(product.price))
 
@@ -43,6 +43,8 @@ def detail(request, product_cd):
         cart.price = product.price
         cart.quantity = quantity
         cart.total = product.price * quantity
+        cart.cd = product_cd
+        cart.category = category
 
         cart.save()
 
@@ -76,12 +78,11 @@ def cart(request):
 
     else:
         user_id = request.session['user_id']
-        my_cart =Carts.objects.filter(user_id=user_id)
-        context = {"cart" : my_cart}
+        user = get_object_or_404(User,user_id=user_id)
+        my_cart =Carts.objects.filter(identity=user)
+        context = {"carts" : my_cart}
 
         return render(request,'cart.html',context)
-
-        return render(request, 'cart.html')
 
 # def paging(request, list):
 #     paginator = Paginator(list, 3)

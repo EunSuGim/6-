@@ -50,8 +50,10 @@ class Goods(models.Model):
         db_table = 'Goods'
 
 class Carts(models.Model):
-    user_id = models.ForeignKey(User, on_delete=models.CASCADE,null=True)
+    identity = models.ForeignKey(User, on_delete=models.CASCADE,null=True)
     name = models.CharField('상품명',max_length=20,null=True)
     price = models.IntegerField('가격',default=0)
     quantity = models.IntegerField('수량',default=0)
     total = models.IntegerField('총가격',default=0)
+    cd = models.IntegerField('cd',null=True)
+    category = models.CharField('카테고리',max_length=20,null=True)

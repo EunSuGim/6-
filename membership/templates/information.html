@@ -103,13 +103,13 @@
                 <div class="col-md-1"></div>
 
                 <div class="col-md-6 ftco-animate">
-                    <form action="#" class="contact-form">
-                        <form action="{%url membership:recharge%}}" class="contact-form">
+                    <form action="{% url 'membership:recharge' user.id %}" class="contact-form" method="post">
+                        {% csrf_token %}
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <br><br>
-                                    <input type="text" class="form-control" placeholder="상품권 일련번호">
+                                    <input type="text" class="form-control" placeholder="상품권 일련번호" name="serial">
                                 </div>
                                 <input type="submit" value="마일리지 충전하기" class="btn btn-primary py-3 px-5">
                             </div>

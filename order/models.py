@@ -48,3 +48,5 @@ class Goods(models.Model):
         managed = False
         db_table = 'Goods'
 
+class carts(models.Model):
+    pass

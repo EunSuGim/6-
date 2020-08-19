@@ -95,7 +95,7 @@
 		            <div class="nav ftco-animate nav-pills justify-content-center" id="v-pills-tab" role="tablist" aria-orientation="vertical">
 		              <a class="nav-link active" id="v-pills-1-tab" data-toggle="pill" href="#v-pills-1" role="tab" aria-controls="v-pills-1" aria-selected="true">Coffee</a>
 
-		              <a class="nav-link" id="v-pills-2-tab" data-toggle="pill" href="#v-pills-2" role="tab" aria-controls="v-pills-2" aria-selected="false">Desserts</a>
+		              <a class="nav-link" id="v-pills-2-tab" data-toggle="pill" href="#v-pills-2" role="tab" aria-controls="v-pills-2" aria-selected="false" id="Desserts">Desserts</a>
 
 		              <a class="nav-link" id="v-pills-3-tab" data-toggle="pill" href="#v-pills-3" role="tab" aria-controls="v-pills-3" aria-selected="false">Goods</a>
 		            </div>
@@ -109,28 +109,30 @@
 							{% for cof in coffee %}
 		              		<div class="col-md-4 text-center">
 		              			<div class="menu-wrap">
-		              				<a href="{% url 'order:c_detail' cof.cd %}" class="menu-img img mb-4" style="background-image: url(/static/images/coffee/{{ cof.cd }}.jpg);"></a>
+		              				<a href="{{ cof.cd }}/detail?kind=coffee" class="menu-img img mb-4" style="background-image: url(/static/images/coffee/{{ cof.cd }}.jpg);"></a>
 		              				<div class="text">
-		              					<h3><a href="{% url 'order:c_detail' cof.cd %}">{{ cof.name }}</a></h3>
+		              					<h3><a href="{{ cof.cd }}/detail?kind=coffee">{{ cof.name }}</a></h3>
 		              					<p>{{ cof.text }}</p>
 		              					<p class="price"><span>{{ cof.price }}</span></p>
-		              					<p><a href="{% url 'order:c_detail' cof.cd %}" class="btn btn-primary btn-outline-primary">Add to cart</a></p>
+		              					<p><a href="{{ cof.cd }}/detail?kind=coffee" class="btn btn-primary btn-outline-primary">Add to cart</a></p>
 		              				</div>
 		              			</div>
 		              		</div>
 							{% endfor %}
+
+
 
 		              	</div>
 		              </div>
 
 		              <div class="tab-pane fade" id="v-pills-2" role="tabpanel" aria-labelledby="v-pills-2-tab">
 		                <div class="row">
-                            {% for des in desserts%}
+                            {% for des in desserts %}
 		              		<div class="col-md-4 text-center">
 		              			<div class="menu-wrap">
-		              				<a href="{% url 'order:d_detail' des.cd %}" class="menu-img img mb-4" style="background-image: url(/static/images/desserts/{{ des.cd }}.jpg);"></a>
+		              				 <a href="{{ des.cd }}/detail?kind=desserts" class="menu-img img mb-4" style="background-image: url(/static/images/desserts/{{ des.cd }}.jpg);"></a>
 		              				<div class="text">
-		              					<h3><a href="{% url 'order:d_detail' des.cd %}">{{ des.name }}</a></h3>
+		              					<h3><a href="{{ des.cd }}/detail?kind=desserts">{{ des.name }}</a></h3>
 		              					<p>{{ des.text }}</p>
 		              					<p class="price"><span>{{ des.price }}</span></p>
 		              					<p><a href="#" class="btn btn-primary btn-outline-primary">Add to cart</a></p>
@@ -147,9 +149,9 @@
                             {% for god in goods %}
 		              		<div class="col-md-4 text-center">
 		              			<div class="menu-wrap">
-		              				<a href="{% url 'order:g_detail' god.cd %}" class="menu-img img mb-4" style="background-image: url(/static/images/goods/{{ god.cd }}.jpg);"></a>
+		              				<a href="{{ god.cd }}/detail?kind=goods" class="menu-img img mb-4" style="background-image: url(/static/images/goods/{{ god.cd }}.jpg);"></a>
 		              				<div class="text">
-		              					<h3><a href="{% url 'order:g_detail' god.cd %}">{{ god.name }}</a></h3>
+		              					<h3><a href="{{ god.cd }}/detail?kind=goods">{{ god.name }}</a></h3>
 		              					<p>{{ god.text }}</p>
 		              					<p class="price"><span>{{ god.price }}</span></p>
 		              					<p><a href="#" class="btn btn-primary btn-outline-primary">Add to cart</a></p>

@@ -1,5 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from order.models import Coffee, Desserts, Goods
+from django.core.paginator import Paginator
+import math
 
 
 # Create your views here.
@@ -12,44 +14,34 @@ def menu(request):
         coffee = Coffee.objects.all()
         desserts = Desserts.objects.all()
         goods = Goods.objects.all()
-        context = {"coffee": coffee, "desserts": desserts, "goods": goods}
+
+        context = {"coffee": coffee, "desserts": desserts, "goods": goods
+                   }
         return render(request, 'menu.html', context)
 
 
-def c_detail(request, product_cd):
+def detail(request, product_cd):
     if request == "POST":
         redirect("menu_detail.html")
     else:
-        coffee = get_object_or_404(Coffee, cd=product_cd)
+        if request.GET['kind'] == 'desserts':
 
-        product = "coffee"
+            product = get_object_or_404(Desserts, cd=product_cd)
 
-        context = {"list": coffee, "product": product}
-        return render(request, 'menu_detail.html', context)
+            product_name = "desserts"
 
+        elif request.GET['kind'] == 'coffee':
 
-def d_detail(request, product_cd):
-    if request == "POST":
-        redirect("menu_detail.html")
-    else:
-        desserts = get_object_or_404(Desserts, cd=product_cd)
+            product = get_object_or_404(Coffee, cd=product_cd)
 
-        product = "desserts"
+            product_name = "coffee"
+        else:
 
-        context = {"list": desserts, "product": product}
+            product = get_object_or_404(Goods, cd=product_cd)
 
-        return render(request, 'menu_detail.html', context)
+            product_name = "goods"
 
-
-def g_detail(request, product_cd):
-    if request == "POST":
-        redirect("menu_detail.html")
-    else:
-        goods = get_object_or_404(Goods, cd=product_cd)
-
-        product = "goods"
-
-        context = {"list": goods, "product": product}
+        context = {"list": product, "product_name": product_name}
         return render(request, 'menu_detail.html', context)
 
 
@@ -59,3 +51,10 @@ def cart(request):
 
     else:
         return render(request, 'cart.html')
+
+# def paging(request, list):
+#     paginator = Paginator(list, 3)
+#     page = request.GET.get('page')
+#     contacts = paginator.get_page(page)
+#
+#     return contacts

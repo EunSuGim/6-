@@ -80,20 +80,21 @@
     	<div class="container">
     		<div class="row">
     			<div class="col-lg-6 mb-5 ftco-animate">
-    				<a href="images/menu-2.jpg" class="image-popup"><img src="/static/images/{{ product }}/{{ list.cd }}.jpg" class="img-fluid" alt="Colorlib Template"></a>
+    				<a href="images/menu-2.jpg" class="image-popup"><img src="/static/images/{{ product_name }}/{{ list.cd }}.jpg" class="img-fluid" alt="Colorlib Template"></a>
+
     			</div>
     			<div class="col-lg-6 product-details pl-md-5 ftco-animate">
     				<h3>{{ list.name }}</h3>
     				<p class="price"><span>{{list.price}}</span></p>
     				<p>{{ list.text }}</p>
-                    {% if product == "coffee" %}
+                    {% if product_name == "coffee" %}
 
                     <row>
                         <p>칼로리 : {{ list.kcal }}</p><p>당 : {{ list.sugars }}</p><p>fat : {{ list.fat }}</p>
                         <p>{{ list.allergy }}</p>
                     </row>
 
-                    {% elif product == "desserts" %}
+                    {% elif product_name == "dessert" %}
 
                     <row>
                         <p>그램 : {{ list.gram }}</p><p>{{ list.allergy }}</p>
@@ -134,7 +135,7 @@
 	             	</span>
 	          	</div>
           	</div>
-          	<p><a href="{% url 'order:cart' list.cd %}" class="btn btn-primary py-3 px-5">Add to Cart</a></p>
+          	<p><a href="{% url 'order:cart' %}" class="btn btn-primary py-3 px-5">Add to Cart</a></p>
     			</div>
     		</div>
     	</div>

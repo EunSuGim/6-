@@ -90,13 +90,13 @@
                             <h2 class="h4">내 마일리지</h2>
                         </div>
                         <div class="col-md-12 mb-3">
-                            <p><span>내 아이디</span>:pgw928</p>
+                            <p><span>내 아이디&nbsp:&nbsp&nbsp</span>{{user.user_id}}</p>
                         </div>
                         <div class="col-md-12 mb-3">
-                            <p><span>내 전화번호:</span>010-5654-0928</p>
+                            <p><span>내 전화번호&nbsp:&nbsp&nbsp</span>{{user.phone_num}}</p>
                         </div>
                         <div class="col-md-12 mb-3">
-                            <p><span>내 마일리지:</span> 35000 point</p>
+                            <p><span>내 마일리지&nbsp:&nbsp&nbsp</span> {{user.point}} point</p>
                         </div>
                     </div>
                 </div>
@@ -104,13 +104,14 @@
 
                 <div class="col-md-6 ftco-animate">
                     <form action="#" class="contact-form">
+                        <form action="{%url membership:recharge%}}" class="contact-form">
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <br><br>
                                     <input type="text" class="form-control" placeholder="상품권 일련번호">
-                                                                    </div>
-                                    <input type="submit" value="마일리지 충전하기" class="btn btn-primary py-3 px-5">
+                                </div>
+                                <input type="submit" value="마일리지 충전하기" class="btn btn-primary py-3 px-5">
                             </div>
                         </div>
                     </form>

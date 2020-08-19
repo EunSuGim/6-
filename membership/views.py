@@ -1,8 +1,11 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from membership.models import Gift_card
+from accounts.models import User
 
-def information(request) :
-    return render(request,"information.html",{"information":[]})
+def information(request,user_n) :
+    user = get_object_or_404(User, id=user_n)
+    context ={"user" : user}
+    return render(request,"information.html",context)
 
 
 def history(request) :

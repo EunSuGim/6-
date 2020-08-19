@@ -4,8 +4,8 @@ from membership import views
 app_name = "membership"
 
 urlpatterns = [
-    path('information/', views.information, name="information"),
-    path('information/history/', views.history, name="history"),
-    path("information/recharge/", views.recharge, name="recharge"),
+    path('<int:user_n>/information/', views.information, name="information"),
+    path('<int:user_n>/information/history/', views.history, name="history"),
+    path("<int:user_n>/information/recharge/", views.recharge, name="recharge"),
 
 ]

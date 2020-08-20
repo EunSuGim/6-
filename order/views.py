@@ -47,8 +47,12 @@ def detail(request, product_cd):
         cart.category = category
 
         cart.save()
+        test = request.POST["flag"]
 
-        return redirect("order:cart")
+        if(test == "true") :
+            return redirect("order:cart")
+        else :
+            return redirect("order:menu")
     else:
 
         if request.GET['kind'] == 'desserts':

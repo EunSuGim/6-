@@ -47,12 +47,12 @@ def detail(request, product_cd):
         cart.category = category
 
         cart.save()
-        test = request.POST["flag"]
+        flag = request.POST["flag"]
 
-        if(test == "true") :
+        if flag == "true":
             return redirect("order:cart")
         else :
-            return redirect("order:menu")
+            return redirect("/order/{}/detail?kind={}".format(cart.cd,cart.category))
     else:
 
         if request.GET['kind'] == 'desserts':
@@ -77,16 +77,38 @@ def detail(request, product_cd):
 
 #장바구니 함수 김은수
 def cart(request):
+    user_id = request.session['user_id']
+    user = get_object_or_404(User, user_id=user_id)
+    my_cart = Carts.objects.filter(identity=user)
+
+    total = 0
+
+    for i in my_cart:
+        total = total + i.total
+
     if request.method == "POST":
-        redirect("cart.html")
+
+        pay = request.POST["flag"]
+
+        if pay == "true":
+            user.point = user.point - total
+            user.save()
+            my_cart.delete()
+            return redirect("home")
+        else :
+            return redirect("order:cart")
+
 
     else:
-        user_id = request.session['user_id']
-        user = get_object_or_404(User,user_id=user_id)
-        my_cart =Carts.objects.filter(identity=user)
-        context = {"carts" : my_cart}
+
+        context = {"carts" : my_cart, "total" : total, "user" : user}
 
         return render(request,'cart.html',context)
+
+def cart_delete(reqeust, cart_id) :
+    cart = get_object_or_404(Carts, id=cart_id)
+    cart.delete()
+    return redirect('order:cart')
 
 # def paging(request, list):
 #     paginator = Paginator(list, 3)

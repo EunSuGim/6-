@@ -27,5 +27,6 @@ urlpatterns = [
     path('menu', views.menu, name='menu'),
     path('<int:product_cd>/detail', views.detail, name='detail'),
     path('cart', views.cart, name='cart'),
+    path('<int:cart_id>/delete',views.cart_delete, name='c_delete')
     #김은수
 ]

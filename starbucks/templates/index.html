@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Coffee - Free Bootstrap 4 Template by Colorlib</title>
+    <title>Starbucks Project</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
@@ -38,14 +38,16 @@
 	        <span class="oi oi-menu"></span> Menu
 	      </button>
 	      <div class="collapse navbar-collapse" id="ftco-nav">
-	        <ul class="navbar-nav ml-auto">
-	          <li class="nav-item active"><a href="index.html" class="nav-link">Home</a></li>
-	          <li class="nav-item"><a href="{% url 'order:menu' %}" class="nav-link">Menu</a></li>
-	          <li class="nav-item"><a href="membership/information" class="nav-link">My Starbucks</a></li>
-	          <li class="nav-item"><a href="blog.html" class="nav-link">Blog</a></li>
+			  <ul class="navbar-nav ml-auto">
+				  <li class="nav-item active"><a href="index.html" class="nav-link">Home</a></li>
+				  <li class="nav-item"><a href="{% url 'order:menu' %}" class="nav-link">Menu</a></li>
+					<!--근웅-->
+				  {% if request.session.check == 1 %}
+				  <li class="nav-item"><a href="{% url 'membership:information' request.session.user_n%}" class="nav-link" >My Starbucks</a></li>
+				  {% endif %}
+				  <li class="nav-item"><a href="blog.html" class="nav-link">Blog</a></li>
 
-
-				<!-- 아인 -->
+				  <!-- 아인 -->
 				{% if request.session.check == 1 %}
 			  <li class="nav-item"><a href="accounts/cash" class="nav-link">Cash</a></li>
 			  <li class="nav-item"><a href="accounts/logout" class="nav-link">Logout</a></li>
@@ -60,7 +62,7 @@
 		  </div>
 	  </nav>
     <!-- END nav -->
-
+	<!--글귀 section 박근웅 수정 -->
     <section class="home-slider owl-carousel">
       <div class="slider-item" style="background-image: url(static/images/bg_1.jpg);">
       	<div class="overlay"></div>
@@ -69,8 +71,8 @@
 
             <div class="col-md-8 col-sm-12 text-center ftco-animate">
             	<span class="subheading">Welcome</span>
-              <h1 class="mb-4">The Best Coffee Testing Experience</h1>
-              <p class="mb-4 mb-md-5">A small river named Duden flows by their place and supplies it with the necessary regelialia.</p>
+              <h1 class="mb-4">THE BEST COFFEE. STARBUCKS COFFEE FINDER.</h1>
+              <p class="mb-4 mb-md-5">Our coffee masters have distilled their years of tasting knowledge down to three simple questions to help you find a Starbucks coffee you’re sure to love.</p>
               <p><a href="#" class="btn btn-primary p-3 px-xl-4 py-xl-3">Order Now</a> <a href="#" class="btn btn-white btn-outline-white p-3 px-xl-4 py-xl-3">View Menu</a></p>
             </div>
 
@@ -85,8 +87,8 @@
 
             <div class="col-md-8 col-sm-12 text-center ftco-animate">
             	<span class="subheading">Welcome</span>
-              <h1 class="mb-4">Amazing Taste &amp; Beautiful Place</h1>
-              <p class="mb-4 mb-md-5">A small river named Duden flows by their place and supplies it with the necessary regelialia.</p>
+              <h1 class="mb-4">EXPLORE OUR COFFEE</h1>
+              <p class="mb-4 mb-md-5">Everything we do is in the name of coffee. This is the culmination of it all—our pursuit of the highest state of coffee experience, our relentless and ongoing innovation—all captured in your cup.</p>
               <p><a href="#" class="btn btn-primary p-3 px-xl-4 py-xl-3">Order Now</a> <a href="#" class="btn btn-white btn-outline-white p-3 px-xl-4 py-xl-3">View Menu</a></p>
             </div>
 
@@ -101,8 +103,8 @@
 
             <div class="col-md-8 col-sm-12 text-center ftco-animate">
             	<span class="subheading">Welcome</span>
-              <h1 class="mb-4">Creamy Hot and Ready to Serve</h1>
-              <p class="mb-4 mb-md-5">A small river named Duden flows by their place and supplies it with the necessary regelialia.</p>
+              <h1 class="mb-4">Expect More Than Coffee.</h1>
+              <p class="mb-4 mb-md-5">We’re not just passionate purveyors of coffee, but everything else that goes with a full and rewarding coffeehouse experience.</p>
               <p><a href="#" class="btn btn-primary p-3 px-xl-4 py-xl-3">Order Now</a> <a href="#" class="btn btn-white btn-outline-white p-3 px-xl-4 py-xl-3">View Menu</a></p>
             </div>
 

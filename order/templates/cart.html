@@ -27,6 +27,24 @@
     <link rel="stylesheet" href="/static/css/flaticon.css">
     <link rel="stylesheet" href="/static/css/icomoon.css">
     <link rel="stylesheet" href="/static/css/style.css">
+	  <style>
+          body .test{
+                        display:flex;
+                        margin-bottom:0.5rem;
+                        }
+          body .center{
+                        width:50%;
+                        display:flex;
+                        flex-direction:column;
+                        justify-content:center;
+                        }
+          body .btn_color{
+                        color:black !important;
+                        }
+          body .btn_color:hover{
+                        color:#c49b63 !important;
+                        }
+      </style>
   </head>
   <body>
   	<nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
@@ -141,7 +159,7 @@
     				</div>
 					<form name="form_pay" method="post">
                                     {% csrf_token %}
-    				<p class="text-center"><button type="button" class="btn btn-primary py-3 px-4" onclick="payment()">Proceed to Checkout</button></p>
+    				<p class="text-center"><button type="button" class="btn_color btn btn-primary py-3 px-4" onclick="payment()">Proceed to Checkout</button></p>
 					<input type="text" id="flag" name="flag" value="true" hidden="true">
 						</form>
     			</div>

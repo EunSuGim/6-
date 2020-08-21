@@ -23,6 +23,8 @@ class Coffee(models.Model):
         managed = False
         db_table = 'Coffee'
 
+    def __str__(self):
+        return self.name
 
 
 class Desserts(models.Model):
@@ -37,6 +39,8 @@ class Desserts(models.Model):
         managed = False
         db_table = 'Desserts'
 
+    def __str__(self):
+        return self.name
 
 
 class Goods(models.Model):
@@ -49,6 +53,9 @@ class Goods(models.Model):
         managed = False
         db_table = 'Goods'
 
+    def __str__(self):
+        return self.name
+
 class Carts(models.Model):
     identity = models.ForeignKey(User, on_delete=models.CASCADE,null=True)
     name = models.CharField('상품명',max_length=20,null=True)
@@ -57,3 +64,7 @@ class Carts(models.Model):
     total = models.IntegerField('총가격',default=0)
     cd = models.IntegerField('cd',null=True)
     category = models.CharField('카테고리',max_length=20,null=True)
+
+
+    def __str__(self):
+        return self.name

@@ -12,6 +12,7 @@ def log_in(request):
             if user.password == password:
                 request.session['user_id'] = user_id
                 request.session['check'] = 1
+                request.session['user_n'] = user.id
             else:
                 print('비밀번호 틀림')
 

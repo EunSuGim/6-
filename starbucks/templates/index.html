@@ -44,6 +44,8 @@
 					<!--근웅-->
 				  {% if request.session.check == 1 %}
 				  <li class="nav-item"><a href="{% url 'membership:information' request.session.user_n%}" class="nav-link" >My Starbucks</a></li>
+				  {%else%}
+				  <li class="nav-item"><a href="accounts/login" class="nav-link" >My Starbucks</a></li>
 				  {% endif %}
 				  <li class="nav-item"><a href="blog.html" class="nav-link">Blog</a></li>
 

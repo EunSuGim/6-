@@ -110,6 +110,12 @@
                                 <div class="form-group">
                                     <br><br>
                                     <input type="text" class="form-control" placeholder="상품권 일련번호" name="serial">
+                                    {% if messages %}
+                                    {% for message in messages %}
+                                    {{ message.tags }}
+                                    {{ message.message }}
+                                    {% endfor %}
+                                    {% endif %}
                                     <div>"-"를 제외한 숫자입력</div>
                                 </div>
                                 <input type="submit" value="마일리지 충전하기" class="btn btn-primary py-3 px-5">
@@ -122,8 +128,8 @@
     </section>
 
     <footer class="ftco-footer ftco-section img">
-    	<div class="overlay"></div>
-      <div class="container">
+        <div class="overlay"></div>
+        <div class="container">
         <div class="row mb-5">
           <div class="col-lg-3 col-md-6 mb-5 mb-md-5">
             <div class="ftco-footer-widget mb-4">

@@ -1,6 +1,7 @@
 from django.shortcuts import render, get_object_or_404,redirect,HttpResponseRedirect,reverse
 from membership.models import Gift_card
 from accounts.models import User
+from django.contrib import messages
 
 def information(request,user_n) :
     user = get_object_or_404(User, id=user_n)
@@ -22,7 +23,8 @@ def recharge(request, user_n) :
                 break
         return redirect("membership:information", user_n)
     else:
-        redirect
+        messages.add_message(request, messages.INFO, '존재하지 않는 번호입니다.')
+
 def history(request) :
     return render(request, "history.html",{"history":[]})
 

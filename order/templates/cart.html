@@ -135,9 +135,11 @@
 					  </div>
     			</div>
     		</div>
+
     		<div class="row justify-content-end">
     			<div class="col col-lg-3 col-md-6 mt-5 cart-wrap ftco-animate">
     				<div class="cart-total mb-3">
+
     					<h3>Cart Totals</h3>
     					<p class="d-flex">
     						<span>Subtotal</span>
@@ -160,6 +162,7 @@
 					<form name="form_pay" method="post">
                                     {% csrf_token %}
     				<p class="text-center"><button type="button" class="btn_color btn btn-primary py-3 px-4" onclick="payment()">Proceed to Checkout</button></p>
+    				<p class="text-center"><button type="button" class="btn_color btn btn-primary py-3 px-4" onclick="test()">test</button></p>
 					<input type="text" id="flag" name="flag" value="true" hidden="true">
 						</form>
     			</div>
@@ -336,6 +339,11 @@
                 $('#flag').val("false");
 	  			return false;
 	  			}
+	  		}
+
+	  	function test(){
+	  		var win = window.open('/popup.html','_blank','toolbar=yes,scrollbar=yes,resizable=yes,top=500,left=500,width=500,height=600');
+	  		win.document.write("<p> 새창 </p>");
 	  		}
   </script>
 

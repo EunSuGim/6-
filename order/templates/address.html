@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="/static/css/css/address.css" />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap"
+            rel="stylesheet"
+        />
+        <title>Coffee | address</title>
+    </head>
+    <body>
+        <div class="address_search">
+            <div class="address_search-bar">
+                <div class="address_search-input">
+                    <input
+                        class="search-input"
+                        type="text"
+                        placeholder={{ flag }}
+                    />
+
+                </div>
+                <div class="adderss_search-icon">
+                    <form name="test123" method="post">
+                                    {% csrf_token %}
+                    <input
+                        class="search-icon"
+                        type="image"
+                        src="https://img.icons8.com/fluent-systems-regular/24/000000/search.png"
+                        OnClick="test_1(); return false;"
+                    />
+                        </form>
+                </div>
+            </div>
+            <div class="address_search-tip">
+                {% if flag %}
+                <strong>tip</strong>
+                <p>
+                    도로명 + 건물번호 <br />
+                    <span class="example"> 예) 판교역로 235, 첨단로 242</span>
+                </p>
+                <p>
+                    지역명(동/리) + 번지 <br />
+                    <span class="example">
+                        예) 삼평동 681, 제주 영평동 2181</span
+                    >
+                </p>
+                <p>
+                    지역명(동/리) + 건물명(아파트명) <br />
+                    <span class="example"> 예) 분당 주공, 연수동 주공3차</span>
+                </p>
+                <p>
+                    사서함명 + 번호 <br />
+                    <span class="example"> 예) 분당우체국 사서함 1~100</span>
+                </p>
+                {% else %}
+                 <ul>
+                    <li>
+                        <div class="list-head">
+                            <div class="post">05693</div>
+                            <div class="option">
+                                <div class="option_en">영문보기</div>
+                                <div class="option_map">지도</div>
+                            </div>
+                        </div>
+                        <a href="#">
+                            <div class="list-location">
+                                <div class="location_title">도로명</div>
+                                <div>서울 송파구 가락로 2 (금송빌딩)</div>
+                            </div>
+                            <div class="list-location">
+                                <div class="location_title">지 번</div>
+                                <div>서울 송파구 석촌동 221</div>
+                            </div>
+                        </a>
+                    </li>
+
+                    <!--  더미데이터 실제 작업시엔 윗줄만 사용하면 됩니다. -->
+                    <li>
+                        <div class="list-head">
+                            <div class="post">05693</div>
+                            <div class="option">
+                                <div class="option_en">영문보기</div>
+                                <div class="option_map">지도</div>
+                            </div>
+                        </div>
+                        <a href="#">
+                            <div class="list-location">
+                                <div class="location_title">도로명</div>
+                                <div>서울 송파구 가락로 2 (금송빌딩)</div>
+                            </div>
+                            <div class="list-location">
+                                <div class="location_title">지 번</div>
+                                <div>서울 송파구 석촌동 221</div>
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <div class="list-head">
+                            <div class="post">05693</div>
+                            <div class="option">
+                                <div class="option_en">영문보기</div>
+                                <div class="option_map">지도</div>
+                            </div>
+                        </div>
+                        <a href="#">
+                            <div class="list-location">
+                                <div class="location_title">도로명</div>
+                                <div>서울 송파구 가락로 2 (금송빌딩)</div>
+                            </div>
+                            <div class="list-location">
+                                <div class="location_title">지 번</div>
+                                <div>서울 송파구 석촌동 221</div>
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <div class="list-head">
+                            <div class="post">05693</div>
+                            <div class="option">
+                                <div class="option_en">영문보기</div>
+                                <div class="option_map">지도</div>
+                            </div>
+                        </div>
+                        <a href="#">
+                            <div class="list-location">
+                                <div class="location_title">도로명</div>
+                                <div>서울 송파구 가락로 2 (금송빌딩)</div>
+                            </div>
+                            <div class="list-location">
+                                <div class="location_title">지 번</div>
+                                <div>서울 송파구 석촌동 221</div>
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <div class="list-head">
+                            <div class="post">05693</div>
+                            <div class="option">
+                                <div class="option_en">영문보기</div>
+                                <div class="option_map">지도</div>
+                            </div>
+                        </div>
+                        <a href="#">
+                            <div class="list-location">
+                                <div class="location_title">도로명</div>
+                                <div>서울 송파구 가락로 2 (금송빌딩)</div>
+                            </div>
+                            <div class="list-location">
+                                <div class="location_title">지 번</div>
+                                <div>서울 송파구 석촌동 221</div>
+                            </div>
+                        </a>
+                    </li>
+                    <!--  더미데이터  -->
+                </ul>
+                {% endif %}
+            </div>
+        </div>
+    </body>
+<script>
+    function test_1(){
+        System.out.print("test");
+        if( {{ flag }} == true ){
+            {{ flag }} = false;
+            }
+         else {
+            {{ flag }} = true;
+            }
+        print({{ flag }};
+        }
+</script>
+</html>
+

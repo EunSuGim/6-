@@ -41,22 +41,24 @@ def detail(request, product_cd):
         all_cart = Carts.objects.filter(identity=session)
 
         if all_cart.exists():
+            count = 0
             for i in all_cart:
                 if i.cd == product_cd:
                     i.quantity += quantity
                     i.total = i.price * i.quantity
                     i.save()
-
-                else:
-                    cart.name = product.name
-                    cart.price = product.price
-                    cart.quantity = quantity
-                    cart.total = product.price * quantity
-                    cart.cd = product_cd
-                    cart.category = category
-
-                    cart.save()
+                    count = 1
                     break
+
+            if count == 0:
+                cart.name = product.name
+                cart.price = product.price
+                cart.quantity = quantity
+                cart.total = product.price * quantity
+                cart.cd = product_cd
+                cart.category = category
+
+                cart.save()
 
         else:
             cart.name = product.name
@@ -132,6 +134,11 @@ def cart_delete(reqeust, cart_id):
     cart = get_object_or_404(Carts, id=cart_id)
     cart.delete()
     return redirect('order:cart')
+
+def address(request):
+    flag = True
+    context = {"flag" : flag}
+    return render(request, 'address.html', context)
 
 # def paging(request, list):
 #     paginator = Paginator(list, 3)

@@ -136,7 +136,9 @@ def cart_delete(reqeust, cart_id):
     return redirect('order:cart')
 
 def address(request):
-    return render(request, 'addressSearch.html')
+    flag = True
+    context = {"flag" : flag}
+    return render(request, 'address.html', context)
 
 # def paging(request, list):
 #     paginator = Paginator(list, 3)

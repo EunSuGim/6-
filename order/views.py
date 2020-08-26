@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from order.models import Coffee, Desserts, Goods, Carts
+from order.models import Coffee, Desserts, Goods, Carts, StarbucksAddress
 from accounts.models import User
 from django.core.paginator import Paginator
 import math
@@ -136,9 +136,23 @@ def cart_delete(reqeust, cart_id):
     return redirect('order:cart')
 
 def address(request):
-    flag = True
-    context = {"flag" : flag}
-    return render(request, 'address.html', context)
+
+    if request.method == "POST" :
+        flag = False
+        address = StarbucksAddress.objects.all()
+
+        test = request.GET.get("input_search")
+
+        print(test)
+
+
+        context = {"flag" : flag}
+        return render(request,'addressSearch.html', context)
+
+    else:
+        flag = True
+        context = {"flag": flag}
+        return render(request, 'address.html', context)
 
 # def paging(request, list):
 #     paginator = Paginator(list, 3)

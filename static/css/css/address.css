@@ -65,3 +65,7 @@ body {
     font-size: 14px;
     color: #58bff4;
 }
+
+.address_search .address_search-tip .search_p {
+    color: black !important;
+}

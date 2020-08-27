@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from order.models import Coffee, Desserts, Goods, Carts
+from order.models import Coffee, Desserts, Goods, Carts, StarbucksAddress
 from accounts.models import User
 from membership.models import History
 from django.core.paginator import Paginator
@@ -20,7 +20,8 @@ def menu(request):
                    }
         return render(request, 'menu.html', context)
 
-#상세보기 함수 김은수
+
+# 상세보기 함수 김은수
 def detail(request, product_cd):
     if request.method == "POST":
         category = request.GET['kind']
@@ -32,27 +33,49 @@ def detail(request, product_cd):
             product = get_object_or_404(Coffee, cd=product_cd)
         elif category == "desserts":
             product = get_object_or_404(Desserts, cd=product_cd)
-        else :
+        else:
             product = get_object_or_404(Goods, cd=product_cd)
 
         cart = Carts(identity=session)
 
-        print(type(product.price))
+        all_cart = Carts.objects.filter(identity=session)
 
-        cart.name = product.name
-        cart.price = product.price
-        cart.quantity = quantity
-        cart.total = product.price * quantity
-        cart.cd = product_cd
-        cart.category = category
+        if all_cart.exists():
+            count = 0
+            for i in all_cart:
+                if i.cd == product_cd:
+                    i.quantity += quantity
+                    i.total = i.price * i.quantity
+                    i.save()
+                    count = 1
+                    break
 
-        cart.save()
+            if count == 0:
+                cart.name = product.name
+                cart.price = product.price
+                cart.quantity = quantity
+                cart.total = product.price * quantity
+                cart.cd = product_cd
+                cart.category = category
+
+                cart.save()
+
+        else:
+            cart.name = product.name
+            cart.price = product.price
+            cart.quantity = quantity
+            cart.total = product.price * quantity
+            cart.cd = product_cd
+            cart.category = category
+
+            cart.save()
+
         flag = request.POST["flag"]
 
         if flag == "true":
             return redirect("order:cart")
-        else :
-            return redirect("/order/{}/detail?kind={}".format(cart.cd,cart.category))
+        else:
+            return redirect("/order/{}/detail?kind={}".format(cart.cd, cart.category))
     else:
 
         if request.GET['kind'] == 'desserts':
@@ -72,10 +95,11 @@ def detail(request, product_cd):
 
             category = "goods"
 
-        context = {"list": product, "category": category }
+        context = {"list": product, "category": category}
         return render(request, 'menu_detail.html', context)
 
-#장바구니 함수 김은수
+
+# 장바구니 함수 김은수
 def cart(request):
     user_id = request.session['user_id']
     user = get_object_or_404(User, user_id=user_id)
@@ -99,20 +123,47 @@ def cart(request):
             user.save()
             my_cart.delete()
             return redirect("home")
-        else :
+        else:
             return redirect("order:cart")
 
 
     else:
 
-        context = {"carts" : my_cart, "total" : total, "user" : user}
+        context = {"carts": my_cart, "total": total, "user": user}
 
-        return render(request,'cart.html',context)
+        return render(request, 'cart.html', context)
 
-def cart_delete(reqeust, cart_id) :
+
+def cart_delete(reqeust, cart_id):
     cart = get_object_or_404(Carts, id=cart_id)
     cart.delete()
     return redirect('order:cart')
+
+
+def address(request):
+    if request.method == "POST":
+        flag = False
+        address_list = StarbucksAddress.objects.all()
+
+        search_adr = request.POST.get("input_search")
+
+        result_list = []
+        search = StarbucksAddress()
+        for i in address_list:
+            if search_adr in i.address:
+                search.name = i.name
+                search.address = i.address
+                result_list.append(search)
+
+
+
+        context = {"flag": flag, "adr_list" : result_list}
+        return render(request, 'address.html', context)
+
+    else:
+        flag = True
+        context = {"flag": flag}
+        return render(request, 'address.html', context)
 
 # def paging(request, list):
 #     paginator = Paginator(list, 3)

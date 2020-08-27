@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from order.models import Coffee, Desserts, Goods, Carts
 from accounts.models import User
-from membership.models import Histories
+from membership.models import History
 from django.core.paginator import Paginator
 import math
 
@@ -93,7 +93,7 @@ def cart(request):
         if pay == "true":
             #----------박근웅----------
             for i in my_cart:
-               Histories.objects.create(user_id=user.id, name=i.name, quantity=i.quantity, total=i.total, cd=i.cd, category=i.category)
+               History.objects.create(user_id=user.id, name=i.name, quantity=i.quantity, total=i.total, cd=i.cd, category=i.category)
             #-------------------------
             user.point = user.point - total
             user.save()

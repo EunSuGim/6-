@@ -1,6 +1,7 @@
 from django.db import models
 from accounts.models import User
 
+
 class Gift_card(models.Model):
     name = models.CharField(max_length=10)
     value = models.IntegerField()
@@ -9,7 +10,7 @@ class Gift_card(models.Model):
     def __str__(self):
         return self.name
 
-class Histories(models.Model):
+class History(models.Model):
     user = models.ForeignKey(User,on_delete=models.CASCADE)
     name = models.CharField('상품명',max_length=20,null=True)
     quantity = models.IntegerField('수량',default=0)
@@ -21,3 +22,11 @@ class Histories(models.Model):
     def __str__(self):
         return self.name
 
+class Review(models.Model):
+    user = models.ForeignKey(User,on_delete=models.CASCADE)
+    history = models.ForeignKey(History, on_delete=models.CASCADE)
+    create_date = models.DateField(auto_now=True)
+    comment = models.TextField("글내용", max_length=1000)
+
+    def __str__(self):
+        return self.comment

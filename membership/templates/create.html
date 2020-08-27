@@ -4,25 +4,30 @@
     <title>Coffee - Free Bootstrap 4 Template by Colorlib</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
+    
     <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Josefin+Sans:400,700" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Great+Vibes" rel="stylesheet">
 
- <link rel="stylesheet" href="/static/css/open-iconic-bootstrap.min.css">
+    <link rel="stylesheet" href="/static/css/open-iconic-bootstrap.min.css">
     <link rel="stylesheet" href="/static/css/animate.css">
+    
     <link rel="stylesheet" href="/static/css/owl.carousel.min.css">
     <link rel="stylesheet" href="/static/css/owl.theme.default.min.css">
     <link rel="stylesheet" href="/static/css/magnific-popup.css">
+
     <link rel="stylesheet" href="/static/css/aos.css">
+
     <link rel="stylesheet" href="/static/css/ionicons.min.css">
+
     <link rel="stylesheet" href="/static/css/bootstrap-datepicker.css">
     <link rel="stylesheet" href="/static/css/jquery.timepicker.css">
+
+    
     <link rel="stylesheet" href="/static/css/flaticon.css">
     <link rel="stylesheet" href="/static/css/icomoon.css">
     <link rel="stylesheet" href="/static/css/style.css">
   </head>
-<!------------------------------------------------------------------------------------------------>
   <body>
   	<nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
 	    <div class="container">
@@ -34,7 +39,7 @@
 	        <ul class="navbar-nav ml-auto">
 	          <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
 	          <li class="nav-item"><a href="menu.html" class="nav-link">Menu</a></li>
-	          <li class="nav-item"><a href="/membership/information/" class="nav-link">Starbucks</a></li>
+	          <li class="nav-item"><a href="services.html" class="nav-link">Services</a></li>
 	          <li class="nav-item"><a href="blog.html" class="nav-link">Blog</a></li>
 	          <li class="nav-item"><a href="about.html" class="nav-link">About</a></li>
 	          <li class="nav-item dropdown">
@@ -42,11 +47,11 @@
               <div class="dropdown-menu" aria-labelledby="dropdown04">
               	<a class="dropdown-item" href="shop.html">Shop</a>
                 <a class="dropdown-item" href="product-single.html">Single Product</a>
-                <a class="dropdown-item" href="cart.html">Cart</a>
+                <a class="dropdown-item" href="room.html">Cart</a>
                 <a class="dropdown-item" href="checkout.html">Checkout</a>
               </div>
             </li>
-	          <li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
+	          <li class="nav-item active"><a href="contact.html" class="nav-link">Contact</a></li>
 	          <li class="nav-item cart"><a href="cart.html" class="nav-link"><span class="icon icon-shopping_cart"></span><span class="bag d-flex justify-content-center align-items-center"><small>1</small></span></a></li>
 	        </ul>
 	      </div>
@@ -56,14 +61,14 @@
 
     <section class="home-slider owl-carousel">
 
-      <div class="slider-item" style="background-image: url(/static/images/bg_3.JPG);" data-stellar-background-ratio="0.5">
+      <div class="slider-item" style="background-image: url(/static/images/bg_3.jpg);" data-stellar-background-ratio="0.5">
       	<div class="overlay"></div>
         <div class="container">
           <div class="row slider-text justify-content-center align-items-center">
 
             <div class="col-md-7 col-sm-12 text-center ftco-animate">
-            	<h1 class="mb-3 mt-5 bread">내 주문내역</h1>
-<!--	            <p class="breadcrumbs"><span class="mr-2"><a href="index.html">Home</a></span> <span>Cart</span></p>-->
+            	<h1 class="mb-3 mt-5 bread">리뷰 작성하기</h1>
+	            <p class="breadcrumbs"><span class="mr-2"><a href="index.html">Home</a></span> <span>Contact</span></p>
             </div>
 
           </div>
@@ -71,103 +76,34 @@
       </div>
     </section>
 
-		<section class="ftco-section ftco-cart">
-			<div class="container">
-				<div class="row">
-					<div class="col-md-12 ftco-animate">
-                        <div class="cart-list">
-                            <table class="table">
-                                <thead class="thead-primary">
-                                <tr class="text-center">
-                                    <th>제품</th>
-                                    <th>제품정보</th>
-                                    <th>개수</th>
-                                    <th>주문금액</th>
-                                    <th>주문일자</th>
-                                    <th>후기</th>
-                                </tr>
-                                <tbody>
-                                {%for history in histories%}
-                                <tr class="text-center">
-                                    <td class="image-prod"><div class="img" style="background-image:url(/static/images/{{history.category}}/{{history.cd}}.jpg);"></div></td>
-                                    <td class="product-name">
-                                        <a href="#">{{history.name}}</a>
-                                    </td>
-                                    <td class="total">{{history.quantity}}</td>
-                                    <td class="total">{{history.total}}</td>
-                                    <td class="total">{{history.order_date|date:"Y-m-d"}}</td>
-                                    {%if history.review_set.all%}
-                                            <td class="total">작성완료</td>
-                                    {%else%}
-                                            <td class="total"><a class="btn btn-primary btn-outline-primary"  href="{% url 'membership:create' history.id%}">작성하기</a></td>
-                                    {%endif%}
-                                </tr>
-                                {%endfor%}
-                                </tbody>
-                            </table>
+    <section class="ftco-section contact-section">
+        <div class="container mt-5">
+            <h2 class="h2">상품은 마음에 드셨나요?</h2>
+            <div class="row block-9">
+                <div class="col-md-6 ftco-animate">
+                    <form method="post" class="contact-form">
+                          {% csrf_token %}
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    "시간나면 별점자리로 교체 아니면 div삭제"
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                </div>
-			</div>
-		</section>
+                        <div class="form-group">
+                            <textarea name="review" cols="30" rows="7" class="form-control" placeholder="상품 만족도에 대한 후기를 남겨주세요."></textarea>
+                        </div>
+                        <div class="form-group">
+                            <input type="submit" value="작성 완료" class="btn btn-primary py-3 px-5">
 
-<!--    <section class="ftco-section">-->
-<!--    	<div class="container">-->
-<!--    		<div class="row justify-content-center mb-5 pb-3">-->
-<!--          <div class="col-md-7 heading-section ftco-animate text-center">-->
-<!--          	<span class="subheading">Discover</span>-->
-<!--            <h2 class="mb-4">Related products</h2>-->
-<!--            <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>-->
-<!--          </div>-->
-<!--        </div>-->
-<!--        <div class="row">-->
-<!--        	<div class="col-md-3">-->
-<!--        		<div class="menu-entry">-->
-<!--    					<a href="#" class="img" style="background-image: url(/static/images/menu-1.jpg);"></a>-->
-<!--    					<div class="text text-center pt-4">-->
-<!--    						<h3><a href="#">Coffee Capuccino</a></h3>-->
-<!--    						<p>A small river named Duden flows by their place and supplies</p>-->
-<!--    						<p class="price"><span>$5.90</span></p>-->
-<!--    						<p><a href="#" class="btn btn-primary btn-outline-primary">Add to Cart</a></p>-->
-<!--    					</div>-->
-<!--    				</div>-->
-<!--        	</div>-->
-<!--        	<div class="col-md-3">-->
-<!--        		<div class="menu-entry">-->
-<!--    					<a href="#" class="img" style="background-image: url(/static/images/menu-2.jpg);"></a>-->
-<!--    					<div class="text text-center pt-4">-->
-<!--    						<h3><a href="#">Coffee Capuccino</a></h3>-->
-<!--    						<p>A small river named Duden flows by their place and supplies</p>-->
-<!--    						<p class="price"><span>$5.90</span></p>-->
-<!--    						<p><a href="#" class="btn btn-primary btn-outline-primary">Add to Cart</a></p>-->
-<!--    					</div>-->
-<!--    				</div>-->
-<!--        	</div>-->
-<!--        	<div class="col-md-3">-->
-<!--        		<div class="menu-entry">-->
-<!--    					<a href="#" class="img" style="background-image: url(/static/images/menu-3.jpg);"></a>-->
-<!--    					<div class="text text-center pt-4">-->
-<!--    						<h3><a href="#">Coffee Capuccino</a></h3>-->
-<!--    						<p>A small river named Duden flows by their place and supplies</p>-->
-<!--    						<p class="price"><span>$5.90</span></p>-->
-<!--    						<p><a href="#" class="btn btn-primary btn-outline-primary">Add to Cart</a></p>-->
-<!--    					</div>-->
-<!--    				</div>-->
-<!--        	</div>-->
-<!--        	<div class="col-md-3">-->
-<!--        		<div class="menu-entry">-->
-<!--    					<a href="#" class="img" style="background-image: url(/static/images/menu-4.jpg);"></a>-->
-<!--    					<div class="text text-center pt-4">-->
-<!--    						<h3><a href="#">Coffee Capuccino</a></h3>-->
-<!--    						<p>A small river named Duden flows by their place and supplies</p>-->
-<!--    						<p class="price"><span>$5.90</span></p>-->
-<!--    						<p><a href="#" class="btn btn-primary btn-outline-primary">Add to Cart</a></p>-->
-<!--    					</div>-->
-<!--    				</div>-->
-<!--        	</div>-->
-<!--        </div>-->
-<!--    	</div>-->
-<!--    </section>-->
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!------------------------------------------------------------------->
+    <div id="map"></div>
 
     <footer class="ftco-footer ftco-section img">
     	<div class="overlay"></div>
@@ -245,8 +181,8 @@
         </div>
       </div>
     </footer>
-
-
+    
+  
 
   <!-- loader -->
   <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"/><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00"/></svg></div>
@@ -266,10 +202,7 @@
   <script src="/static/js/bootstrap-datepicker.js"></script>
   <script src="/static/js/jquery.timepicker.min.js"></script>
   <script src="/static/js/scrollax.min.js"></script>
-<!--  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>-->
-  <script src="/static/js/google-map.js"></script>
   <script src="/static/js/main.js"></script>
-
-
+    
   </body>
 </html>

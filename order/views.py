@@ -135,19 +135,26 @@ def cart_delete(reqeust, cart_id):
     cart.delete()
     return redirect('order:cart')
 
+
 def address(request):
-
-    if request.method == "POST" :
+    if request.method == "POST":
         flag = False
-        address = StarbucksAddress.objects.all()
+        address_list = StarbucksAddress.objects.all()
 
-        test = request.GET.get("input_search")
+        search_adr = request.POST.get("input_search")
 
-        print(test)
+        result_list = []
+        search = StarbucksAddress()
+        for i in address_list:
+            if search_adr in i.address:
+                search.name = i.name
+                search.address = i.address
+                result_list.append(search)
 
 
-        context = {"flag" : flag}
-        return render(request,'addressSearch.html', context)
+
+        context = {"flag": flag, "adr_list" : result_list}
+        return render(request, 'address.html', context)
 
     else:
         flag = True

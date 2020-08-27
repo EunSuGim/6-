@@ -10,6 +10,8 @@ body {
     border: 1px solid #f2f2f2;
     /*transform: translateY(30%);*/
     margin: auto;
+    display: flex;
+    flex-direction: column;
     position: relative;
     background-color: #f2f2f2;
 }
@@ -62,4 +64,8 @@ body {
 .address_search .address_search-tip .example {
     font-size: 14px;
     color: #58bff4;
+}
+
+.address_search .address_search-tip .search_p {
+    color: black !important;
 }

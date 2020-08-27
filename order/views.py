@@ -141,7 +141,7 @@ def address(request):
         flag = False
         address = StarbucksAddress.objects.all()
 
-        test = request.GET.get("input_search")
+        test = request.POST.get("input_search")
 
         print(test)
 

@@ -12,7 +12,10 @@
     </head>
     <body>
         <div class="address_search">
+                    <form name="test123" method="post">
+                                    {% csrf_token %}
             <div class="address_search-bar">
+
                 <div class="address_search-input">
                     <input
                         class="search-input"
@@ -23,15 +26,15 @@
 
                 </div>
                 <div class="adderss_search-icon">
-                    <form name="test123" method="post">
-                                    {% csrf_token %}
                     <input
                         class="search-icon"
                         type="image"
                         src="https://img.icons8.com/fluent-systems-regular/24/000000/search.png"/>
-                        </form>
+
                 </div>
             </div>
+                         </form>
+
             <div class="address_search-tip">
                 {% if flag %}
                 <strong>tip</strong>

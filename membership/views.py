@@ -24,6 +24,11 @@ def recharge(request, user_n) :
     else:
         redirect
 def history(request) :
-    return render(request, "history.html",{"history":[]})
+    if request.method == "POST":
+        return render(request, "history.html")
+
+    else :
+        return render(request, "history.html",{"history":[]})
+
 
 

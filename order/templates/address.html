@@ -98,7 +98,8 @@
                                 <div class="option_map">지도</div>
                             </div>
                         </div>
-                        <a href="#">
+
+                        <form method="post" action="{% url 'membership:history' %}">
                             <div class="list-location">
                                 <div class="location_title">도로명</div>
                                 <div>{{ adr.address }}</div>
@@ -107,7 +108,7 @@
                                 <div class="location_title">매장명</div>
                                 <div>{{ adr.name }}</div>
                             </div>
-                        </a>
+                        </form>
                         {% endfor %}
                     </li>
 

@@ -11,5 +11,4 @@ urlpatterns = [
     path('<int:user_n>/information/history/', views.history, name='history') #김은수
 =======
     path('<int:history_id>/information/history/create/', views.r_create, name="create"),
->>>>>>> master
 ]

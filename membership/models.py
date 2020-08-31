@@ -1,7 +1,7 @@
 from django.db import models
 from accounts.models import User
 from django import forms
-from django.core.validators import MinLengthValidator
+from django.core.validators import MinValueValidator, MaxValueValidator
 
 def min_length_10_validator(value):
     if len(value) < 10 :
@@ -32,11 +32,7 @@ class Review(models.Model):
     history = models.ForeignKey(History, on_delete=models.CASCADE)
     create_date = models.DateField(auto_now=True)
     comment = models.TextField("글내용",max_length=1000, validators=[min_length_10_validator])
+    grade = models.IntegerField(validators=[MinValueValidator(1), MaxValueValidator(5)])
 
     def __str__(self):
         return self.comment
-    #
-    # def clean(self, *args, **kwargs):
-    #     comment = self.comment
-    #     if len(comment) < 10:
-    #         raise ValidationError('최소 10자 이상 입력해주세요.')

@@ -119,7 +119,9 @@
 						        
 						        <td class="product-name">
 						        	<h3>{{cart.name}}</h3>
-						        	<p>상세보기</p>
+						        	<p>
+										<a href="/order/{{ cart.cd }}/detail?kind={{ cart.category }}">상세보기</a>
+									</p>
 						        </td>
 						        
 						        <td class="price">${{cart.price}}</td>
@@ -135,6 +137,18 @@
 					  </div>
     			</div>
     		</div>
+				<div class="row justify-content-end">
+
+    			<div class="col col-lg-3 col-md-6 mt-5 cart-wrap ftco-animate">
+    				<div class="cart-total mb-3">
+						<p class="d-flex">
+							<span> {{ user.select_adr }} </span>
+						</p>
+						<p class="text-center"><button type="button" class="btn_color btn btn-primary py-3 px-4" onclick="window.open('{% url 'order:address' %}','window팝업','width=470,height=600,top=100,left=500');">매장 검색</button></p>
+
+					</div>
+				</div>
+				</div>
     		<div class="row justify-content-end">
     			<div class="col col-lg-3 col-md-6 mt-5 cart-wrap ftco-animate">
     				<div class="cart-total mb-3">
@@ -146,7 +160,7 @@
     					</p>
     					<p class="d-flex">
     						<span>Delivery</span>
-    						<span>$0</span>
+    						<span>{{ user.select_adr }}</span>
     					</p>
     					<p class="d-flex">
     						<span>Discount</span>
@@ -339,6 +353,7 @@
 	  			return false;
 	  			}
 	  		}
+
 
   </script>
 

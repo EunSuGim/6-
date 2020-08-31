@@ -7,9 +7,6 @@ urlpatterns = [
     path('<int:user_n>/information/', views.information, name="information"),
     path("<int:user_n>/information/recharge/", views.recharge, name="recharge"),
     path('<int:user_n>/information/history/', views.history, name="history"),
-<<<<<<< HEAD
-    path('<int:user_n>/information/history/', views.history, name='history') #김은수
-=======
     path('<int:history_id>/information/history/create/', views.r_create, name="create"),
->>>>>>> master
+
 ]

@@ -87,42 +87,58 @@
                     <span>'지역구',</span>
                 </p>
             </div>
+
+                        {% if adr_list %}
             <div class="address_search-list">
                 <ul>
-                    <li>
-                        {% if adr_list %}
                         {% for adr in adr_list %}
+
+                    <li>
+                        <form name="test11" method="get" action="{% url 'order:insert_adr' %}">
+                                    {% csrf_token %}
                         <div class="list-head">
+                            <div class="post">
+                                <button class="post" onclick="test111()">선택</button>
+                                </div>
+                            <input type="hidden" name="adrValue" value="{{ adr.name }}">
                             <div class="option">
                                 <div class="option_en">영문보기</div>
                                 <div class="option_map">지도</div>
                             </div>
                         </div>
 
-                        <form method="post" action="{% url 'membership:history' %}">
                             <div class="list-location">
                                 <div class="location_title">도로명</div>
-                                <div>{{ adr.address }}</div>
+                                <div>
+                                    <div> {{ adr.address }}</div>
+                                    </div>
                             </div>
                             <div class="list-location">
                                 <div class="location_title">매장명</div>
-                                <div>{{ adr.name }}</div>
+                                <div>
+                                    {{ adr.name }}</div>
                             </div>
-                        </form>
-                        {% endfor %}
+                            </form>
                     </li>
 
-                    {% endif %}
+                        {% endfor %}
 
                     <!--  더미데이터 실제 작업시엔 윗줄만 사용하면 됩니다. -->
 
                 </ul>
             </div>
+
+                    {% endif %}
         </div>
                 {% endif %}
 
     </body>
 <script>
+    function test111(){
+        document.test11.action = "${pageContext.request.contextPath}";
+        document.test11.submit();
+        window.open('about:blank','_self').close();
+    }
 </script>
 </html>
 

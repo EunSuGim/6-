@@ -123,9 +123,12 @@ def cart(request):
                                        category=i.category)
             # -------------------------
             user.point = user.point - total
-            user.save()
-            my_cart.delete()
-            return redirect("/membership/{}/information/history".format(user.id))
+            if user.point >= 0 :
+                user.save()
+                my_cart.delete()
+                return redirect("/membership/{}/information/history".format(user.id))
+            else :
+                return HttpResponse('<script type="text/javascript">alert("충전금액이 모자릅니다");</script>')
         else:
             return redirect("order:cart")
 
@@ -183,7 +186,7 @@ def insert_adr(request):
 
     session.save()
 
-    return HttpResponse('<script type="text/javascript">window.close();</script>')
+    return HttpResponse('<script type="text/javascript">window.close();opener.location.reload();</script>')
 
 # def paging(request, list):
 #     paginator = Paginator(list, 3)

@@ -2,7 +2,8 @@ from django.shortcuts import render, get_object_or_404, redirect
 from membership.models import Gift_card, History, Review
 from accounts.models import User
 from django.contrib import messages
-# from membership.forms import ReviewsForm
+from membership.forms import ReviewForm
+from django.http import HttpResponse
 
 def information(request,user_n) :
     user = get_object_or_404(User, id=user_n)
@@ -38,14 +39,30 @@ def history(request, user_n):
     return render(request, "history.html",{"histories": user_histories})
 
 
+# def r_create(request, history_id):
+#     if request.method == "POST":
+#         user_n = request.session["user_n"]
+#         history = get_object_or_404(History, id = history_id)
+#         comment = request.POST["review"]
+#         if True:   # 나중에 최소글자수 추가 할수도 있음
+#             Review.objects.create(user_id = user_n, history_id = history.id, comment = comment)
+#             return redirect("membership:history", user_n)
+#     else:
+#         return render(request,"create.html")
+# ---------------------------------------
 def r_create(request, history_id):
     if request.method == "POST":
-        user_n = request.session["user_n"]
-        history = get_object_or_404(History, id = history_id)
-        comment = request.POST["review"]
-        if True :   # 나중에 최소글자수 추가 할수도 있음
-            Review.objects.create(user_id = user_n, history_id = history.id, comment = comment)
-            return redirect("membership:history", user_n)
+        form = ReviewForm(request.POST)
+        if form.is_valid():
+            review = form.save(commit=False)                # comment
+            print(request.session['user_n'])
+            review.user_id = request.session['user_n']      # user
+            history = get_object_or_404(History, id = history_id)
+            review.history_id = history.id                  # history
+            review.save()
+            return redirect('membership:history', request.session['user_n'] )
+
     else:
-         return render(request,"create.html")
-# ---------------------------------------
+        form = ReviewForm()
+    return render(request, 'create.html' ,{'form':form})
+# # ---------------------------------------

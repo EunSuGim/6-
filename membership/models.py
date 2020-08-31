@@ -1,6 +1,11 @@
 from django.db import models
 from accounts.models import User
+from django import forms
+from django.core.validators import MinLengthValidator
 
+def min_length_10_validator(value):
+    if len(value) < 10 :
+        raise forms.ValidationError('최소 10자 이상 입력해주세요.')
 
 class Gift_card(models.Model):
     name = models.CharField(max_length=10)
@@ -26,7 +31,12 @@ class Review(models.Model):
     user = models.ForeignKey(User,on_delete=models.CASCADE)
     history = models.ForeignKey(History, on_delete=models.CASCADE)
     create_date = models.DateField(auto_now=True)
-    comment = models.TextField("글내용", max_length=1000)
+    comment = models.TextField("글내용",max_length=1000, validators=[min_length_10_validator])
 
     def __str__(self):
         return self.comment
+    #
+    # def clean(self, *args, **kwargs):
+    #     comment = self.comment
+    #     if len(comment) < 10:
+    #         raise ValidationError('최소 10자 이상 입력해주세요.')

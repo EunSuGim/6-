@@ -23,10 +23,12 @@
     <link rel="stylesheet" href="/static/css/bootstrap-datepicker.css">
     <link rel="stylesheet" href="/static/css/jquery.timepicker.css">
 
-    
+
     <link rel="stylesheet" href="/static/css/flaticon.css">
     <link rel="stylesheet" href="/static/css/icomoon.css">
     <link rel="stylesheet" href="/static/css/style.css">
+
+
   </head>
   <body>
   	<nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
@@ -91,7 +93,20 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <textarea name="review" cols="30" rows="7" class="form-control" placeholder="상품 만족도에 대한 후기를 남겨주세요."></textarea>
+                            {% for field in form.visible_fields %}
+                            <tr>
+                                <td>
+                                    {{ field }}
+                                    {% for error  in field.errors %}
+                                    <div>
+                                        <p class="text-danger">
+                                            {{error}}
+                                        </p>
+                                    </div>
+                                    {% endfor %}
+                                </td>
+                            </tr>
+                            {% endfor %}
                         </div>
                         <div class="form-group">
                             <input type="submit" value="작성 완료" class="btn btn-primary py-3 px-5">

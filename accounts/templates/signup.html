@@ -76,42 +76,71 @@
       </div>
     </section>
 
-        <section class="ftco-section contact-section">
-        <div class="container mt-5">
-        <div class="row block-9">
+    <section class="ftco-section contact-section">
+      <div class="container mt-5">
+<!--        <div class="row block-9">-->
 
-					<div class="col-md-4 contact-info ftco-animate">
-						<div class="row">
-							<div class="col-md-12 mb-4">
-	                        <h2 class="h4">Sign Up</h2>
-	                        </div>
+          <div class="col-md-4 contact-info ftco-animate">
+            <div class="row">
+              <div class="col-md-12 mb-4">
+                <h2 class="h4">Sign Up</h2>
+              </div>
 
-						</div>
-					</div>
-					<div class="col-md-1"></div>
+            </div>
+          </div>
+          <div class="col-md-1"></div>
 
           <div class="col-md-6 ftco-animate">
             <form action="#" class="contact-form" method="POST">
-                {% csrf_token %}
+              {% csrf_token %}
               <div class="form-group">
+                <p class="text-white">
                   ID:
+                </p>
                 <input name="user_id" type="text" class="form-control" placeholder=" ">
+                <div>
+                  <p class="text-danger">
+                    {%if request.session.tmp_flag == 1%}
+                    {% for message in messages %}
+                    {{ message.message }}
+                    {%endfor%}
+                    {% endif%}
+                  </p>
+                </div>
               </div>
               <div class="form-group">
+                <p class="text-white">
                   Name:
+                </p>
                 <input name="user_name" type="text" class="form-control" placeholder=" ">
               </div>
               <div class="form-group">
+                <p class="text-white">
                   Mobile:
+                </p>
                 <input name="phone_num" type="text" class="form-control" placeholder=" ">
+                <p >
+                  다음과 같은 형식으로 작성하세요. (예시)010-1234-5678
+                </p>
               </div>
               <div class="form-group">
+                <p class="text-white">
                   PW:
+                </p>
                 <input name="password1" type="password" class="form-control" placeholder=" ">
               </div>
               <div class="form-group">
+                <p class="text-white">
                   PW again:
+                </p>
                 <input name="password2" type="password" class="form-control" placeholder=" ">
+                <p class="text-danger">
+                  {%if request.session.tmp_flag == 0%}
+                  {% for message in messages %}
+                  {{ message.message }}
+                  {%endfor%}
+                  {%endif%}
+                </p>
               </div>
               <div class="form-group">
                 <button type="submit" class="btn btn-primary py-3 px-5">Sign Up</button>
@@ -119,7 +148,7 @@
             </form>
           </div>
 
-        </div>
+<!--        </div>-->
       </div>
     </section>
 
@@ -223,7 +252,7 @@
   <script src="/static/js/bootstrap-datepicker.js"></script>
   <script src="/static/js/jquery.timepicker.min.js"></script>
   <script src="/static/js/scrollax.min.js"></script>
-  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
+<!--  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>-->
   <script src="/static/js/google-map.js"></script>
   <script src="/static/js/main.js"></script>
 

@@ -27,13 +27,7 @@
       <link rel="stylesheet" href="/static/css/flaticon.css">
       <link rel="stylesheet" href="/static/css/icomoon.css">
       <link rel="stylesheet" href="/static/css/style.css">
-      {% include "django/forms/widgets/input.html" %}
 
-      <link rel="stylesheet" href="/widgets/rateit/rateit.css' %}">
-      <script
-              src="https://code.jquery.com/jquery-3.4.1.min.js"
-              integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
-              crossorigin="anonymous"></script>
 
   </head>
   <body>
@@ -91,15 +85,7 @@
                 <div class="col-md-6 ftco-animate">
                     <form method="post" class="contact-form">
                           {% csrf_token %}
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                 <div id="star_{{ widget.attrs.id }}" class="rateit" data-rateit-backingfld="#{{ widget.attrs.id }}"></div>
-                                </div>
-                            </div>
-                        </div>
                         <div class="form-group">
-                            {{ form.media }}
                             {% for field in form.visible_fields %}
                             <tr>
                                 <td>

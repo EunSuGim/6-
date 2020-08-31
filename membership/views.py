@@ -45,7 +45,7 @@ def history(request) :
 def history(request, user_n):
     user = get_object_or_404(User, id=user_n)
     user_histories = user.history_set.all().order_by('-id')
-    return render(request, "history.html",{"histories": user_histories})
+    return render(request, "history.html",{"histories": user_histories, 'user' : user}) #김은수 : context에 user 추가
 
 
 # def r_create(request, history_id):

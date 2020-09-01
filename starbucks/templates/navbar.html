@@ -31,9 +31,9 @@
 				  {% endif %}
 				  <!-----------voc(나중에 명칭에 맞게 변경)------------>
 				  {% if request.resolver_match.url_name == 'voc' %}
-				  <li class="nav-item active"><a href="blog.html" class="nav-link">VOC</a></li>
+				  <li class="nav-item active"><a href="accounts/list" class="nav-link">VOC</a></li>
 				  {% else %}
-				  <li class="nav-item"><a href="blog.html" class="nav-link">VOC</a></li>
+				  <li class="nav-item"><a href="accounts/list" class="nav-link">VOC</a></li>
 				  {% endif %}
 				  <!-----------logout----------->
 				  {% if request.session.check == 1 %}
@@ -51,14 +51,13 @@
 				  	  {% else %}
 	          		  <li class="nav-item"><a href="{% url 'accounts:login' %}" class="nav-link">Login</a></li>
 				  	  {% endif%}
+				  	  <!-----------signup----------->
 				  	  {% if request.resolver_match.url_name == 'signup' %}
 				      <li class="nav-item active"><a href="{% url 'accounts:signup' %}" class="nav-link">Signup</a></li>
 				      {% else%}
 				      <li class="nav-item "><a href="{% url 'accounts:signup' %}" class="nav-link">Signup</a></li>
 				      {% endif %}
 				  {% endif %}
-				  <!-----------signup----------->
-
 	        </ul>
 	      </div>
 		  </div>

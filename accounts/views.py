@@ -1,7 +1,9 @@
 from django.shortcuts import render, redirect, get_object_or_404
+
 from accounts.models import User, Post, Comment
 from datetime import datetime
 from accounts.forms import PostForm, CommentForm
+
 from django.contrib import messages
 
 

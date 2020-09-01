@@ -1,9 +1,5 @@
 from django import forms
 from membership.models import Review
-# from django.core.exceptions import ValidationError
-
-
-
 
 
 class ReviewForm(forms.ModelForm):
@@ -15,10 +11,6 @@ class ReviewForm(forms.ModelForm):
                                              'class':'form-control',
                                              'name' : 'review',
                                              'cols' : '30',
-                                             'rows' : '7' })}
-    # def clean_comment(self, *args, **kwargs):
-    #     comment = self.cleaned_data.get("comment")
-    #     if len(comment) < 10:
-    #         raise forms.ValidationError('최소 10자 이상 입력해주세요.')
-    #     return comment
-#
+                                             'rows' : '7' }),
+        }
+

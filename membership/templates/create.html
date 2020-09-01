@@ -24,9 +24,9 @@
     <link rel="stylesheet" href="/static/css/jquery.timepicker.css">
 
 
-    <link rel="stylesheet" href="/static/css/flaticon.css">
-    <link rel="stylesheet" href="/static/css/icomoon.css">
-    <link rel="stylesheet" href="/static/css/style.css">
+      <link rel="stylesheet" href="/static/css/flaticon.css">
+      <link rel="stylesheet" href="/static/css/icomoon.css">
+      <link rel="stylesheet" href="/static/css/style.css">
 
 
   </head>
@@ -85,13 +85,6 @@
                 <div class="col-md-6 ftco-animate">
                     <form method="post" class="contact-form">
                           {% csrf_token %}
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    "시간나면 별점자리로 교체 아니면 div삭제"
-                                </div>
-                            </div>
-                        </div>
                         <div class="form-group">
                             {% for field in form.visible_fields %}
                             <tr>

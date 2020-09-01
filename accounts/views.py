@@ -1,5 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from accounts.models import User
+from accounts.models import User, Post, Comment
+from datetime import datetime
+from accounts.forms import PostForm, CommentForm
 from django.contrib import messages
 
 
@@ -63,11 +65,89 @@ def log_out(request):
     return redirect('/')
 
 
-def cash(request):
-    if request.method == 'POST':
-        user = get_object_or_404(User, user_id=request.session['user_id'])
-        user.point += int(request.POST['cash'])
-        user.save()
-        return redirect('/')
+# def cash(request):
+#     if request.method == 'POST':
+#         user = get_object_or_404(User, user_id=request.session['user_id'])
+#         user.point += int(request.POST['cash'])
+#         user.save()
+#         return redirect('/')
+#
+#     return render(request, 'cash.html')
 
-    return render(request, 'cash.html')
+
+def p_list(request):
+    my_list = Post.objects.all().order_by('-id')
+    return render(request, 'list.html', {'list': my_list})
+
+
+def p_create(request):
+    if request.method == 'POST':
+        post = Post()
+        post.author = request.session['user_id']
+        post.title = request.POST['title']
+        post.contents = request.POST['contents']
+        post.qtype = request.POST['choice']
+        post.created_date = datetime.now()
+        post.save()
+        return redirect('/accounts/list/')
+        # post = Post(author=request.POST['author'], title=request.POST['title'], contents=request.POST['contents'])
+
+    else:
+        return render(request, 'create_voc.html')
+
+
+def p_delete(request, post_id):
+    post = Post.objects.get(id=post_id)
+    post.delete()
+
+    return redirect('accounts:list')
+
+
+# def p_update(request, post_id):
+#     post = get_object_or_404(Post, pk=post_id)
+#
+#     if request.method == 'POST':
+#         post_form = PostForm(request.POST, instance=post)
+#
+#         if post_form.is_valid():
+#             post_form.save()
+#             return redirect('reviews:list')
+
+
+def p_detail(request, post_id):
+
+    post = get_object_or_404(Post, pk=post_id)
+
+    if request.method == 'POST':
+        comment_form = CommentForm(request.POST)
+        if comment_form.is_valid():
+            tmp = comment_form.save(commit=False)
+            tmp.post = post
+            comment_form.save()
+            # path = "/posts/"+post_id+"/detail/"
+            path = "/accounts/{}/detail/".format(post_id)
+            return redirect(path)
+
+    else:
+        comment = post.comment_set.all()
+        comment.author = request.session['user_id']
+        comment_form = CommentForm(request.POST)
+        post_form = PostForm(instance=post)
+        context = {'comment_list': comment, 'post_form': post_form, 'comment_form': comment_form, 'post': post}
+
+        for i in post_form.fields:
+            post_form.fields[i].disabled=True
+
+        return render(request, 'detail.html', context)
+
+
+def c_delete(request, comment_id, post_id):
+
+    comment = get_object_or_404(Comment, pk=comment_id)
+    comment.delete()
+    path = "/accounts/{}/detail".format(post_id)
+    return redirect(path)
+
+
+
+

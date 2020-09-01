@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from order.models import Coffee, Desserts, Goods, Carts, StarbucksAddress
 from accounts.models import User
-from membership.models import History
+from membership.models import History, Review
 from django.core.paginator import Paginator
 from django.http import HttpResponse
 import math
@@ -97,7 +97,15 @@ def detail(request, product_cd):
 
             category = "goods"
 
-        context = {"list": product, "category": category}
+        #------------ 근웅 ------------
+        histories = History.objects.filter(completed=True)
+        reviews = []
+        for history in histories:
+            if history.cd == product_cd and history.category == category:
+                reviews.append( get_object_or_404(Review, history_id = history.id) )
+
+        context = {"list": product, "category": category, "reviews":reviews}
+        #-----------------------------
         return render(request, 'menu_detail.html', context)
 
 

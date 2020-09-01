@@ -1,7 +1,12 @@
 from django.shortcuts import render, redirect, get_object_or_404
+<<<<<<< HEAD
 from accounts.models import User, Post, Comment
 from datetime import datetime
 from accounts.forms import PostForm, CommentForm
+=======
+from accounts.models import User
+from django.contrib import messages
+>>>>>>> 1b3b742274a9b1b88277c535dd8fa5c098f1255a
 
 
 def log_in(request):
@@ -16,10 +21,12 @@ def log_in(request):
                 request.session['check'] = 1
                 request.session['user_n'] = user.id
             else:
-                print('비밀번호 틀림')
+                messages.add_message(request, messages.INFO, '가입하지 않은 아이디이거나, 잘못된 비밀번호입니다.')
+                return render(request, 'login.html')
 
         else:
-            print('아이디 존재X')
+            messages.add_message(request, messages.INFO, '가입하지 않은 아이디이거나, 잘못된 비밀번호입니다.')
+            return render(request, 'login.html')
 
         return redirect('/')
     # get 방식
@@ -29,7 +36,7 @@ def log_in(request):
 def sign_up(request):
     # signup 으로 POST 요청이 왔을 때, 새로운 유저를 만드는 절차를 밟는다.
     if request.method == 'POST':
-        print(request.POST)
+        request.session['tmp_flag'] = -1
         user_id = request.POST['user_id']  # 변수 선언
         if User.objects.filter(user_id=user_id).exists() == False:  # user_id 중복이 되면 False
         # password와 confirm에 입력된 값이 같다면
@@ -43,8 +50,13 @@ def sign_up(request):
 
 
                 return redirect('/')
+            else :
+                request.session['tmp_flag'] = 0
+                messages.add_message(request, messages.INFO, '비밀번호가 일치하지 않습니다.')
+                return redirect('/accounts/signup/')
         else:
-            print('이미존재하는 아이디입니다')
+            request.session['tmp_flag'] = 1
+            messages.add_message(request, messages.INFO, '이미 존재하는 아이디입니다.')
             return redirect('/accounts/signup/')
     # signup으로 GET 요청이 왔을 때, 회원가입 화면을 띄워준다.
     return render(request, 'signup.html')

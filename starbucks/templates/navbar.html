@@ -7,16 +7,29 @@
 	      </button>
 	      <div class="collapse navbar-collapse" id="ftco-nav">
 			  <ul class="navbar-nav ml-auto">
-				  <!-- 은수 home 경로 수정 -->
+				  <!-----------home----------->
+				  {% if request.resolver_match.url_name == 'home' %}
 				  <li class="nav-item active"><a href="{% url 'home' %}" class="nav-link">Home</a></li>
-				  <!-- 은수 -->
+				  {% else %}
+				  <li class="nav-item"><a href="{% url 'home' %}" class="nav-link">Home</a></li>
+				  {%endif%}
+				  <!-----------menu----------->
+				  {% if request.resolver_match.url_name == 'menu' %}
+				  <li class="nav-item active"><a href="{% url 'order:menu' %}"  class="nav-link">Menu</a></li>
+				  {% else %}
 				  <li class="nav-item"><a href="{% url 'order:menu' %}" class="nav-link">Menu</a></li>
-					<!--근웅-->
-				  {% if request.session.check == 1 %}
-				  <li class="nav-item"><a href="{% url 'membership:information' request.session.user_n%}" class="nav-link" >My Starbucks</a></li>
+				  {% endif%}
+				  <!-------My Starbucks------->
+				  {% if request.session.check == 1%}
+				      {% if request.resolver_match.url_name == 'information' %}
+				      <li class="nav-item active"><a href="{% url 'membership:information' request.session.user_n%}" class="nav-link" >My Starbucks</a></li>
+				      {%else%}
+				      <li class="nav-item "><a href="{% url 'membership:information' request.session.user_n%}" class="nav-link" >My Starbucks</a></li>
+				      {%endif%}
 				  {%else%}
-				  <li class="nav-item"><a href="accounts/login" class="nav-link" >My Starbucks</a></li>
+				  <li class="nav-item"><a href="{% url 'accounts:login' %}" class="nav-link" >My Starbucks</a></li>
 				  {% endif %}
+<<<<<<< HEAD
 				  <!-- 아인 VOC 경로 추가 -->
 				  <li class="nav-item"><a href="accounts/list" class="nav-link">VOC</a></li>
 				  <!-- 은수 url 경로 수정 -->
@@ -29,6 +42,37 @@
 				  <li class="nav-item"><a href="{% url 'accounts:signup' %}" class="nav-link">Signup</a></li>
 				  <!-- 은수 -->
 				{% endif %}
+=======
+				  <!-----------voc(나중에 명칭에 맞게 변경)------------>
+				  {% if request.resolver_match.url_name == 'voc' %}
+				  <li class="nav-item active"><a href="blog.html" class="nav-link">VOC</a></li>
+				  {% else %}
+				  <li class="nav-item"><a href="blog.html" class="nav-link">VOC</a></li>
+				  {% endif %}
+				  <!-----------logout----------->
+				  {% if request.session.check == 1 %}
+				      {% if request.resolver_match.url_name == 'logout' %}
+					  <li class="nav-item active"><a href="{% url 'accounts:logout' %}" class="nav-link">Logout</a></li>
+				      {% else %}
+				  	  <li class="nav-item"><a href="{% url 'accounts:logout' %}" class="nav-link">Logout</a></li>
+				      {% endif %}
+				  <!-----------cart------------>
+				  <li class="nav-item cart"><a href="{% url 'order:cart' %}" class="nav-link"><span class="icon icon-shopping_cart"></span><span class="bag d-flex justify-content-center align-items-center"><small>1</small></span></a></li>
+				  <!-----------login----------->
+				  {% else %}
+				      {% if request.resolver_match.url_name == 'login' %}
+				  	  <li class="nav-item active"><a href="{% url 'accounts:login' %}" class="nav-link">Login</a></li>
+				  	  {% else %}
+	          		  <li class="nav-item"><a href="{% url 'accounts:login' %}" class="nav-link">Login</a></li>
+				  	  {% endif%}
+				  	  {% if request.resolver_match.url_name == 'signup' %}
+				      <li class="nav-item active"><a href="{% url 'accounts:signup' %}" class="nav-link">Signup</a></li>
+				      {% else%}
+				      <li class="nav-item "><a href="{% url 'accounts:signup' %}" class="nav-link">Signup</a></li>
+				      {% endif %}
+				  {% endif %}
+				  <!-----------signup----------->
+>>>>>>> 1b3b742274a9b1b88277c535dd8fa5c098f1255a
 
 	        </ul>
 	      </div>

@@ -1,7 +1,6 @@
 from django.db import models
 from accounts.models import User
 from django import forms
-from django.core.validators import MinLengthValidator
 
 def min_length_10_validator(value):
     if len(value) < 10 :
@@ -23,6 +22,7 @@ class History(models.Model):
     order_date = models.DateField(auto_now=True)
     cd = models.IntegerField('cd',null=True)
     category = models.CharField('카테고리',max_length=20,null=True)
+    completed = models.BooleanField('후기유무',default=False)
 
     def __str__(self):
         return self.name
@@ -35,8 +35,3 @@ class Review(models.Model):
 
     def __str__(self):
         return self.comment
-    #
-    # def clean(self, *args, **kwargs):
-    #     comment = self.comment
-    #     if len(comment) < 10:
-    #         raise ValidationError('최소 10자 이상 입력해주세요.')

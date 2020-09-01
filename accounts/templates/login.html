@@ -54,7 +54,7 @@
 
         <section class="ftco-section contact-section">
         <div class="container mt-5">
-        <div class="row block-9">
+<!--        <div class="row block-9">-->
 
 					<div class="col-md-4 contact-info ftco-animate">
 						<div class="row">
@@ -74,6 +74,17 @@
               <div class="form-group">
                 <input name="password" type="password" class="form-control" placeholder="PW">
               </div>
+              <!--근웅-->
+              {% if messages %}
+              <div>
+                <p class="text-danger">
+                  {% for message in messages %}
+                  {{ message.message }}
+                  {% endfor%}
+                </p>
+              </div>
+              {% endif %}
+              <!------------------>
               <div class="form-group">
                 <input type="submit" value="Log In" class="btn btn-primary py-3 px-5">
               </div>
@@ -83,8 +94,7 @@
               </div>
             </form>
           </div>
-
-        </div>
+<!--        </div>-->
       </div>
     </section>
 

@@ -4,6 +4,7 @@ from accounts.models import User
 from membership.models import History, Review
 from django.core.paginator import Paginator
 from django.http import HttpResponse
+from django.contrib.auth.mixins import LoginRequiredMixin
 import math
 
 
@@ -26,8 +27,14 @@ def menu(request):
 # 상세보기 함수 김은수
 def detail(request, product_cd):
     if request.method == "POST":
+        # request.session.check == 1:
+        if not request.user.is_authenticated:
+            return HttpResponse('<script type="text/javascript">alert("로그인이필요합니다.");history.back(); '
+                                '</script>')
+
         category = request.GET['kind']
         user_id = request.session['user_id']
+
         quantity = int(request.POST["quantity"])
         session = get_object_or_404(User, user_id=user_id)
 
@@ -97,15 +104,15 @@ def detail(request, product_cd):
 
             category = "goods"
 
-        #------------ 근웅 ------------
+        # ------------ 근웅 ------------
         histories = History.objects.filter(completed=True)
         reviews = []
         for history in histories:
             if history.cd == product_cd and history.category == category:
-                reviews.append( get_object_or_404(Review, history_id = history.id) )
+                reviews.append(get_object_or_404(Review, history_id=history.id))
 
-        context = {"list": product, "category": category, "reviews":reviews}
-        #-----------------------------
+        context = {"list": product, "category": category, "reviews": reviews}
+        # -----------------------------
         return render(request, 'menu_detail.html', context)
 
 
@@ -131,11 +138,11 @@ def cart(request):
                                        category=i.category)
             # -------------------------
             user.point = user.point - total
-            if user.point >= 0 :
+            if user.point >= 0:
                 user.save()
                 my_cart.delete()
                 return redirect("/membership/{}/information/history".format(user.id))
-            else :
+            else:
                 return HttpResponse('<script type="text/javascript">alert("충전금액이 모자릅니다");</script>')
         else:
             return redirect("order:cart")

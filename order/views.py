@@ -4,6 +4,7 @@ from accounts.models import User
 from membership.models import History, Review
 from django.core.paginator import Paginator
 from django.http import HttpResponse
+from django.contrib.auth.mixins import LoginRequiredMixin
 import math
 
 
@@ -26,8 +27,13 @@ def menu(request):
 # 상세보기 함수 김은수
 def detail(request, product_cd):
     if request.method == "POST":
+        if not request.session["check"] == 1:
+            return HttpResponse('<script type="text/javascript">alert("로그인이필요합니다.");history.back(); '
+                                '</script>')
+
         category = request.GET['kind']
         user_id = request.session['user_id']
+
         quantity = int(request.POST["quantity"])
         session = get_object_or_404(User, user_id=user_id)
 
@@ -97,15 +103,15 @@ def detail(request, product_cd):
 
             category = "goods"
 
-        #------------ 근웅 ------------
+        # ------------ 근웅 ------------
         histories = History.objects.filter(completed=True)
         reviews = []
         for history in histories:
             if history.cd == product_cd and history.category == category:
-                reviews.append( get_object_or_404(Review, history_id = history.id) )
+                reviews.append(get_object_or_404(Review, history_id=history.id))
 
-        context = {"list": product, "category": category, "reviews":reviews}
-        #-----------------------------
+        context = {"list": product, "category": category, "reviews": reviews}
+        # -----------------------------
         return render(request, 'menu_detail.html', context)
 
 
@@ -115,12 +121,17 @@ def cart(request):
     user = get_object_or_404(User, user_id=user_id)
     my_cart = Carts.objects.filter(identity=user)
 
-    total = 0
+    pay_products = 0
 
     for i in my_cart:
-        total = total + i.total
+        pay_products = pay_products + i.total
 
     if request.method == "POST":
+
+        if user.select_adr == None:
+            return HttpResponse('<script type="text/javascript">alert("take out하실 매장을 선택해주세요.");history.back();</script>')
+        elif not my_cart.exists():
+            return HttpResponse('<script type="text/javascript">alert("결제할 메뉴가없습니다.");history.back();</script>')
 
         pay = request.POST["flag"]
 
@@ -130,20 +141,22 @@ def cart(request):
                 History.objects.create(user_id=user.id, name=i.name, quantity=i.quantity, total=i.total, cd=i.cd,
                                        category=i.category)
             # -------------------------
-            user.point = user.point - total
-            if user.point >= 0 :
+            user.point = user.point - pay_products
+            if user.point >= 0:
                 user.save()
                 my_cart.delete()
                 return redirect("/membership/{}/information/history".format(user.id))
-            else :
-                return HttpResponse('<script type="text/javascript">alert("충전금액이 모자릅니다");</script>')
+            else:
+                return HttpResponse('<script type="text/javascript">alert("충전금액이 모자릅니다");history.back();</script>')
         else:
             return redirect("order:cart")
 
 
     else:
 
-        context = {"carts": my_cart, "total": total, "user": user}
+        total = user.point - pay_products
+
+        context = {"carts": my_cart, "total": total, "pay_products" : pay_products, "user": user}
 
         return render(request, 'cart.html', context)
 
@@ -184,11 +197,10 @@ def insert_adr(request):
 
     session = get_object_or_404(User, user_id=user_id)
 
-    test = request.GET.get('adrValue')
+    adrValue= request.GET.get('adrValue')
 
-    print(test)
 
-    session.select_adr = test
+    session.select_adr = adrValue
 
     print(session.select_adr)
 

@@ -129,21 +129,17 @@
 
     					<h3>Cart Totals</h3>
     					<p class="d-flex">
-    						<span>Subtotal</span>
-    						<span>${{ total }}</span>
+    						<span>My_Point</span>
+    						<span>${{ user.point }}</span>
     					</p>
     					<p class="d-flex">
-    						<span>Delivery</span>
-    						<span>{{ user.select_adr }}</span>
-    					</p>
-    					<p class="d-flex">
-    						<span>Discount</span>
-    						<span>$0</span>
+    						<span>Payment</span>
+    						<span>${{ pay_products }}</span>
     					</p>
     					<hr>
     					<p class="d-flex total-price">
     						<span>Total</span>
-    						<span>${{ total }}</span>
+    						<span>{{ total }}</span>
     					</p>
     				</div>
 					<form name="form_pay" method="post">

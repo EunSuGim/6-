@@ -3,6 +3,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from accounts.models import User, Post, Comment
 from datetime import datetime
 from accounts.forms import PostForm, CommentForm
+from django.http import HttpResponse, HttpResponseRedirect
 
 from django.contrib import messages
 
@@ -91,7 +92,8 @@ def p_create(request):
         post.qtype = request.POST['choice']
         post.created_date = datetime.now()
         post.save()
-        return redirect('/accounts/list/')
+        return redirect('accounts:list')
+        # return redirect('/accounts/list/')
         # post = Post(author=request.POST['author'], title=request.POST['title'], contents=request.POST['contents'])
 
     else:

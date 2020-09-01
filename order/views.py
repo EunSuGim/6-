@@ -197,11 +197,10 @@ def insert_adr(request):
 
     session = get_object_or_404(User, user_id=user_id)
 
-    test = request.GET.get('adrValue')
+    adrValue= request.GET.get('adrValue')
 
-    print(test)
 
-    session.select_adr = test
+    session.select_adr = adrValue
 
     print(session.select_adr)
 

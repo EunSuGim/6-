@@ -3,7 +3,9 @@ from order.models import Coffee, Desserts, Goods, Carts, StarbucksAddress
 from accounts.models import User
 from membership.models import History, Review
 from django.core.paginator import Paginator
+from django.http import HttpResponse
 import math
+
 
 # Create your views here.
 
@@ -123,14 +125,18 @@ def cart(request):
         pay = request.POST["flag"]
 
         if pay == "true":
-            #----------박근웅----------
+            # ----------박근웅----------
             for i in my_cart:
-               History.objects.create(user_id=user.id, name=i.name, quantity=i.quantity, total=i.total, cd=i.cd, category=i.category)
-            #-------------------------
+                History.objects.create(user_id=user.id, name=i.name, quantity=i.quantity, total=i.total, cd=i.cd,
+                                       category=i.category)
+            # -------------------------
             user.point = user.point - total
-            user.save()
-            my_cart.delete()
-            return redirect("home")
+            if user.point >= 0 :
+                user.save()
+                my_cart.delete()
+                return redirect("/membership/{}/information/history".format(user.id))
+            else :
+                return HttpResponse('<script type="text/javascript">alert("충전금액이 모자릅니다");</script>')
         else:
             return redirect("order:cart")
 
@@ -156,22 +162,39 @@ def address(request):
         search_adr = request.POST.get("input_search")
 
         result_list = []
-        search = StarbucksAddress()
+
         for i in address_list:
             if search_adr in i.address:
+                search = StarbucksAddress()
                 search.name = i.name
                 search.address = i.address
                 result_list.append(search)
 
-
-
-        context = {"flag": flag, "adr_list" : result_list}
+        context = {"flag": flag, "adr_list": result_list}
         return render(request, 'address.html', context)
 
     else:
         flag = True
         context = {"flag": flag}
         return render(request, 'address.html', context)
+
+
+def insert_adr(request):
+    user_id = request.session['user_id']
+
+    session = get_object_or_404(User, user_id=user_id)
+
+    test = request.GET.get('adrValue')
+
+    print(test)
+
+    session.select_adr = test
+
+    print(session.select_adr)
+
+    session.save()
+
+    return HttpResponse('<script type="text/javascript">window.close();opener.location.reload();</script>')
 
 # def paging(request, list):
 #     paginator = Paginator(list, 3)

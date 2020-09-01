@@ -1,0 +1,37 @@
+	<nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
+	    <div class="container">
+	      <a class="navbar-brand" href="/" >Starbucks <img src="/static/images/logo_orange.png"></a>
+<!--			  <small>Blend</small>-->
+	      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+	        <span class="oi oi-menu"></span> Menu
+	      </button>
+	      <div class="collapse navbar-collapse" id="ftco-nav">
+			  <ul class="navbar-nav ml-auto">
+				  <!-- 은수 home 경로 수정 -->
+				  <li class="nav-item active"><a href="{% url 'home' %}" class="nav-link">Home</a></li>
+				  <!-- 은수 -->
+				  <li class="nav-item"><a href="{% url 'order:menu' %}" class="nav-link">Menu</a></li>
+					<!--근웅-->
+				  {% if request.session.check == 1 %}
+				  <li class="nav-item"><a href="{% url 'membership:information' request.session.user_n%}" class="nav-link" >My Starbucks</a></li>
+				  {%else%}
+				  <li class="nav-item"><a href="accounts/login" class="nav-link" >My Starbucks</a></li>
+				  {% endif %}
+				  <li class="nav-item"><a href="blog.html" class="nav-link">Blog</a></li>
+
+				  <!-- 아인 -->
+				  <!-- 은수 url 경로 수정 -->
+				{% if request.session.check == 1 %}
+			  <li class="nav-item"><a href="{% url 'accounts:cash' %}" class="nav-link">Cash</a></li>
+			  <li class="nav-item"><a href="{% url 'accounts:logout' %}" class="nav-link">Logout</a></li>
+			  <li class="nav-item cart"><a href="{% url 'order:cart' %}" class="nav-link"><span class="icon icon-shopping_cart"></span><span class="bag d-flex justify-content-center align-items-center"><small>1</small></span></a></li>
+				{% else %}
+	          <li class="nav-item"><a href="{% url 'accounts:login' %}" class="nav-link">Login</a></li>
+			  <li class="nav-item"><a href="{% url 'accounts:signup' %}" class="nav-link">Signup</a></li>
+				  <!-- 은수 -->
+				{% endif %}
+
+	        </ul>
+	      </div>
+		  </div>
+	  </nav>

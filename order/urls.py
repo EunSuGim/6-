@@ -29,6 +29,7 @@ urlpatterns = [
     path('cart', views.cart, name='cart'),
     path('<int:cart_id>/delete',views.cart_delete, name='c_delete'),
     path('address', views.address, name='address'),
+    path('insert_adr', views.insert_adr, name='insert_adr')
 
     #김은수
 ]

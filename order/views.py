@@ -121,15 +121,17 @@ def cart(request):
     user = get_object_or_404(User, user_id=user_id)
     my_cart = Carts.objects.filter(identity=user)
 
-    total = 0
+    pay_products = 0
 
     for i in my_cart:
-        total = total + i.total
+        pay_products = pay_products + i.total
 
     if request.method == "POST":
 
         if user.select_adr == None:
             return HttpResponse('<script type="text/javascript">alert("take out하실 매장을 선택해주세요.");history.back();</script>')
+        elif not my_cart.exists():
+            return HttpResponse('<script type="text/javascript">alert("결제할 메뉴가없습니다.");history.back();</script>')
 
         pay = request.POST["flag"]
 
@@ -139,7 +141,7 @@ def cart(request):
                 History.objects.create(user_id=user.id, name=i.name, quantity=i.quantity, total=i.total, cd=i.cd,
                                        category=i.category)
             # -------------------------
-            user.point = user.point - total
+            user.point = user.point - pay_products
             if user.point >= 0:
                 user.save()
                 my_cart.delete()
@@ -152,7 +154,9 @@ def cart(request):
 
     else:
 
-        context = {"carts": my_cart, "total": total, "user": user}
+        total = user.point - pay_products
+
+        context = {"carts": my_cart, "total": total, "pay_products" : pay_products, "user": user}
 
         return render(request, 'cart.html', context)
 

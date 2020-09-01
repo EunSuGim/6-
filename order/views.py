@@ -27,8 +27,7 @@ def menu(request):
 # 상세보기 함수 김은수
 def detail(request, product_cd):
     if request.method == "POST":
-        # request.session.check == 1:
-        if not request.user.is_authenticated:
+        if not request.session["check"] == 1:
             return HttpResponse('<script type="text/javascript">alert("로그인이필요합니다.");history.back(); '
                                 '</script>')
 
@@ -129,6 +128,9 @@ def cart(request):
 
     if request.method == "POST":
 
+        if user.select_adr == None:
+            return HttpResponse('<script type="text/javascript">alert("take out하실 매장을 선택해주세요.");history.back();</script>')
+
         pay = request.POST["flag"]
 
         if pay == "true":
@@ -143,7 +145,7 @@ def cart(request):
                 my_cart.delete()
                 return redirect("/membership/{}/information/history".format(user.id))
             else:
-                return HttpResponse('<script type="text/javascript">alert("충전금액이 모자릅니다");</script>')
+                return HttpResponse('<script type="text/javascript">alert("충전금액이 모자릅니다");history.back();</script>')
         else:
             return redirect("order:cart")
 

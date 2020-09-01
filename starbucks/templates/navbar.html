@@ -17,17 +17,16 @@
 				  {%else%}
 				  <li class="nav-item"><a href="accounts/login" class="nav-link" >My Starbucks</a></li>
 				  {% endif %}
-				  <li class="nav-item"><a href="blog.html" class="nav-link">Blog</a></li>
-
-				  <!-- 아인 -->
+				  <!-- 아인 VOC 경로 추가 -->
+				  <li class="nav-item"><a href="accounts/list" class="nav-link">VOC</a></li>
 				  <!-- 은수 url 경로 수정 -->
 				{% if request.session.check == 1 %}
-			  <li class="nav-item"><a href="{% url 'accounts:cash' %}" class="nav-link">Cash</a></li>
-			  <li class="nav-item"><a href="{% url 'accounts:logout' %}" class="nav-link">Logout</a></li>
-			  <li class="nav-item cart"><a href="{% url 'order:cart' %}" class="nav-link"><span class="icon icon-shopping_cart"></span><span class="bag d-flex justify-content-center align-items-center"><small>1</small></span></a></li>
+				  <!-- 아인 cash 삭제 -->
+				  <li class="nav-item"><a href="{% url 'accounts:logout' %}" class="nav-link">Logout</a></li>
+				  <li class="nav-item cart"><a href="{% url 'order:cart' %}" class="nav-link"><span class="icon icon-shopping_cart"></span><span class="bag d-flex justify-content-center align-items-center"><small>1</small></span></a></li>
 				{% else %}
-	          <li class="nav-item"><a href="{% url 'accounts:login' %}" class="nav-link">Login</a></li>
-			  <li class="nav-item"><a href="{% url 'accounts:signup' %}" class="nav-link">Signup</a></li>
+				  <li class="nav-item"><a href="{% url 'accounts:login' %}" class="nav-link">Login</a></li>
+				  <li class="nav-item"><a href="{% url 'accounts:signup' %}" class="nav-link">Signup</a></li>
 				  <!-- 은수 -->
 				{% endif %}
 

@@ -55,13 +55,13 @@ def r_create(request, history_id):
         form = ReviewForm(request.POST)
         if form.is_valid():
             review = form.save(commit=False)                # comment
-            print(request.session['user_n'])
             review.user_id = request.session['user_n']      # user
             history = get_object_or_404(History, id = history_id)
+            history.completed = True
+            history.save()
             review.history_id = history.id                  # history
             review.save()
             return redirect('membership:history', request.session['user_n'] )
-
     else:
         form = ReviewForm()
     return render(request, 'create.html' ,{'form':form})

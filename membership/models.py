@@ -22,6 +22,7 @@ class History(models.Model):
     order_date = models.DateField(auto_now=True)
     cd = models.IntegerField('cd',null=True)
     category = models.CharField('카테고리',max_length=20,null=True)
+    completed = models.BooleanField('후기유무',default=False)
 
     def __str__(self):
         return self.name

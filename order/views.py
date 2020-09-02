@@ -92,16 +92,22 @@ def detail(request, product_cd):
 
             product = get_object_or_404(Desserts, cd=product_cd)
 
+            product_list = Desserts.objects.all()
+
             category = "desserts"
 
         elif request.GET['kind'] == 'coffee':
 
             product = get_object_or_404(Coffee, cd=product_cd)
 
+            product_list = Coffee.objects.all()
+
             category = "coffee"
         else:
 
             product = get_object_or_404(Goods, cd=product_cd)
+
+            product_list = Goods.objects.all()
 
             category = "goods"
 
@@ -112,7 +118,7 @@ def detail(request, product_cd):
             if history.cd == product_cd and history.category == category:
                 reviews.append(get_object_or_404(Review, history_id=history.id))
 
-        context = {"list": product, "category": category, "reviews": reviews}
+        context = {"list": product, "category": category, "reviews": reviews, "product_list" : product_list}
         # -----------------------------
         return render(request, 'menu_detail.html', context)
 

@@ -90,6 +90,10 @@
                         <p>{{ list.allergy }}</p>
                     </row>
 
+                    <row>
+                        <h3><span>tall : 3000</span></h3><h3><span>grande : 4000</span></h3><h3><span>venti : 5000</span></h3>
+                    </row>
+
                     {% elif category == "dessert" %}
 
                     <row>
@@ -110,10 +114,9 @@
 		              <div class="select-wrap">
 	                  <div class="icon"><span class="ion-ios-arrow-down"></span></div>
 	                  <select name="" id="" class="form-control">
-	                  	<option value="">Small</option>
-	                    <option value="">Medium</option>
-	                    <option value="">Large</option>
-	                    <option value="">Extra Large</option>
+	                    <option value="">Tall</option>
+	                    <option value="">Grande</option>
+	                    <option value="">Venti</option>
 	                  </select>
 	                </div>
 		            </div>
@@ -196,9 +199,9 @@
         	<div class="col-md-3">
         		<div class="menu-entry">
 
-    					<a href="#" class="img" style="background-image: url(/static/images/{{ category }}/{{ ran.cd }}.jpg);"></a>
+    					<a href="../{{ ran.cd }}/detail?kind={{ category }}" class="img" style="background-image: url(/static/images/{{ category }}/{{ ran.cd }}.jpg);"></a>
     					<div class="text text-center pt-4">
-    						<h3><a href="#">{{ ran.name }}</a></h3>
+    						<h3><a href="../{{ ran.cd }}/detail?kind={{ category }}">{{ ran.name }}</a></h3>
     						<p>{{ ran.text }}</p>
     						<p class="price"><span>{{ ran.price }}</span></p>
     						<p><a href="../{{ ran.cd }}/detail?kind={{ category }}" class="btn btn-primary btn-outline-primary">Add to Cart</a></p>

@@ -24,7 +24,7 @@
 				      {% if request.resolver_match.url_name == 'information' %}
 				      <li class="nav-item active"><a href="{% url 'membership:information' request.session.user_n%}" class="nav-link" >My Starbucks</a></li>
 				      {%else%}
-				      <li class="nav-item "><a href="{% url 'membership:information' request.session.user_n%}" class="nav-link" >My Starbucks</a></li>
+
 				      {%endif%}
 				  {%else%}
 				  <li class="nav-item"><a href="{% url 'accounts:login' %}" class="nav-link" >My Starbucks</a></li>

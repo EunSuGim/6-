@@ -5,4 +5,7 @@ def give_reviews(request) :
     reviews = Review.objects.all().order_by('-id')
     reviews5 = reviews[0:5]
 
+    #김은수
+
+
     return render(request, "index.html",{"reviews": reviews5})

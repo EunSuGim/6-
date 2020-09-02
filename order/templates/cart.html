@@ -314,7 +314,7 @@
   <script>
 	  function payment(){
 
-	  		if (confirm("결제하시겠습니까?"+"\n내마일리지 : "+"{{user.point}}\n"+"결제금액 : " + "{{total}}\n") == true) {
+	  		if (confirm("결제하시겠습니까?"+"\n내마일리지 : "+"{{user.point}}\n"+"결제금액 : " + "{{pay_products}}\n") == true) {
 	  			$('#flag').val('true')
 		        document.form_pay.submit();
 	  		}

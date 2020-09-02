@@ -15,7 +15,7 @@
 
                 {% if flag %}
         <div class="address_search">
-                    <form name="test123" method="post">
+                    <form name="search_adr" method="post">
                                     {% csrf_token %}
             <div class="address_search-bar">
 
@@ -59,7 +59,7 @@
         </div>
                 {% else %}
         <div class="address_search">
-            <form name="test123" method="post">
+            <form name="search_adr" method="post">
                                     {% csrf_token %}
             <div class="address_search-bar">
                 <div class="address_search-input">
@@ -94,11 +94,11 @@
                         {% for adr in adr_list %}
 
                     <li>
-                        <form name="test11" method="get" action="{% url 'order:insert_adr' %}">
+                        <form name="insert_adr" method="get" action="{% url 'order:insert_adr' %}">
                                     {% csrf_token %}
                         <div class="list-head">
                             <div class="post">
-                                <button class="post" onclick="test111()">선택</button>
+                                <button class="post" onclick="submit_adr()">선택</button>
                                 </div>
                             <input type="hidden" name="adrValue" value="{{ adr.name }}">
                             <div class="option">
@@ -134,9 +134,9 @@
 
     </body>
 <script>
-    function test111(){
-        document.test11.action = "${pageContext.request.contextPath}";
-        document.test11.submit();
+    function submit_adr(){
+        document.insert_adr.action = "${pageContext.request.contextPath}";
+        document.insert_adr.submit();
         window.open('about:blank','_self').close();
     }
 </script>

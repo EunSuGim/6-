@@ -6,8 +6,8 @@ from django.core.paginator import Paginator
 from django.http import HttpResponse
 from django.contrib.auth.mixins import LoginRequiredMixin
 import math
+import random
 from datetime import datetime
-
 
 
 # Create your views here.
@@ -117,9 +117,21 @@ def detail(request, product_cd):
         for history in histories:
             if history.cd == product_cd and history.category == category:
                 reviews.append(get_object_or_404(Review, history_id=history.id))
-
-        context = {"list": product, "category": category, "reviews": reviews, "product_list" : product_list}
         # -----------------------------
+
+        count = 0
+        random_list = []
+        while count < 4:
+            for i in product_list:
+                ran = random.randrange(0, 30)
+                if i.id == ran:
+                    random_list.append(i)
+                    count += 1
+                    if count == 4:
+                        break
+        print(random_list)
+        context = {"list": product, "category": category, "reviews": reviews, "product_list": product_list,
+                   "random_list": random_list}
         return render(request, 'menu_detail.html', context)
 
 
@@ -137,7 +149,8 @@ def cart(request):
     if request.method == "POST":
 
         if user.select_adr == None:
-            return HttpResponse('<script type="text/javascript">alert("take out하실 매장을 선택해주세요.");history.back();</script>')
+            return HttpResponse(
+                '<script type="text/javascript">alert("take out하실 매장을 선택해주세요.");history.back();</script>')
         elif not my_cart.exists():
             return HttpResponse('<script type="text/javascript">alert("결제할 메뉴가없습니다.");history.back();</script>')
 
@@ -149,7 +162,7 @@ def cart(request):
 
             for i in my_cart:
                 History.objects.create(user_id=user.id, name=i.name, quantity=i.quantity, total=i.total, cd=i.cd,
-                                       category=i.category, order_no=order_no, select_adr =user.select_adr)
+                                       category=i.category, order_no=order_no, select_adr=user.select_adr)
             # -------------------------
             user.point = user.point - pay_products
             if user.point >= 0:
@@ -166,7 +179,7 @@ def cart(request):
 
         total = user.point - pay_products
 
-        context = {"carts": my_cart, "total": total, "pay_products" : pay_products, "user": user}
+        context = {"carts": my_cart, "total": total, "pay_products": pay_products, "user": user}
 
         return render(request, 'cart.html', context)
 
@@ -207,7 +220,7 @@ def insert_adr(request):
 
     session = get_object_or_404(User, user_id=user_id)
 
-    adrValue= request.GET.get('adrValue')
+    adrValue = request.GET.get('adrValue')
 
     session.select_adr = adrValue
 

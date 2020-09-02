@@ -47,7 +47,7 @@
                 <p class="breadcrumbs"><span class="mr-2"><a href="index.html">Home</a></span> <span><a href="/accounts/list/">board</a></span></p>
             </div>
 
-          </div>ㄴ
+          </div>
         </div>
       </div>
     </section>
@@ -56,24 +56,45 @@
       <div class="container">
         <div class="row">
           <div class="col-xl-12 ftco-animate">
-              {% block container %}
-                <form method="post" class="billing-form ftco-bg-dark p-3 p-md-5">
-                {% csrf_token %}
-                    {% load bootstrap4 %}
-                    {% bootstrap_form post_form %}
-<!--                <h3 class="mb-4 billing-heading">글 작성</h3>-->
-                    <br><br><br><br><br><br><h3 class="mb-4 billing-heading">댓글</h3>
-                    {% for comment in comment_list %}
-                    <p><tr>
-                        <td placeholder="{{request.session.user_id}}" disabled>{{comment.author}}</td>
-<!--                        <input name="author" type="text" class="form-control" placeholder="{{request.session.user_id}}" disabled>-->
-                        <br>
-                        <td>{{comment.text}}</td>
-                        <td>{{post.created_date|date:"Y-m-d"}}</td>
 
-                        <td class="product-remove"><a href="{% url 'accounts:c_delete' comment.id post.id %}"><span class="icon-close"></span></a></td>
-                    </tr></p>
-                    {% endfor %}<br><br><br>
+              {% block container %}
+
+                <div>
+                <input type="hidden" value="{{post.update_counter}}">
+                조회수 : {{ post.hit }}
+                </div>
+
+        <section class="ftco-section">
+            <div class="container">
+            <div class="row">
+            <div class="col-md-8 ftco-animate">
+                <h2 class="mb-3">{{ post.title }}</h2>
+                <p>{{ post.contents }}</p>
+                <a href="{% url 'accounts:delete' post.id %}" class="btn btn-primary btn-outline-primary">삭제</a>
+                <br><br><br><br><br><br><br>
+
+                <form method="post">
+                {% csrf_token %}
+                <h3 class="mb-5">Leave Comments</h3>
+                    {% for comment in comment_list %}
+                    <ul class="comment-list">
+                        <li class="comment">
+                          <div class="comment-body">
+                            <h3>{{ comment.author }}</h3>
+                            <div class="meta">{{ post.created_date }}</div>
+                            <p>{{comment.text}}</p>
+                              <p class="product-remove"><a href="{% url 'accounts:c_delete' comment.id post.id %}"><span class="icon-close"></span></a></p>
+                          </div>
+                {% empty %}
+                    <p>No comments here yet</p>
+                        </li>
+                    </ul>
+                {% endfor %}
+
+
+                    {% load bootstrap4 %}
+
+
                 {% bootstrap_form comment_form %}
                 <button type="submit" class="btn btn-primary">댓글 등록</button>
                 </form>
@@ -88,7 +109,7 @@
 <!--										</div>-->
 <!--									</div>-->
 <!--                </div>-->
-                 </form><!-- END -->
+                 <!-- END -->
               {% endblock %}
           </div>
         </div>

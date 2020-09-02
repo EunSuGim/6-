@@ -17,14 +17,20 @@ class User(models.Model):
 
 
 class Post(models.Model):
-    author = models.CharField('작성자', max_length=20)
+    author = models.ForeignKey(User, on_delete=models.CASCADE)
     title = models.TextField('글제목', max_length=1000)
     contents = models.TextField('글내용', max_length=1000)
     created_date = models.DateField('작성시간', null=True)
     qtype = models.CharField('문의유형', max_length=15, default='매장')
+    hit = models.PositiveIntegerField('조회수', default=0)
 
     def __str__(self):
         return self.title
+
+    @property
+    def update_counter(self):
+        self.hit = self.hit + 1
+        self.save()
 
 
 class Comment(models.Model):

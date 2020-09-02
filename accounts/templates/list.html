@@ -62,30 +62,33 @@
 						        <th>문의내용</th>
 						        <th>작성자</th>
                                 <th>작성날짜</th>
-						        <th>수정</th>
-                                <th>삭제</th>
+						        <th>조회수</th>
+
 						      </tr>
 						    </thead>
 						    <tbody>
-
+                            {% if list %}
                               {% for post in list %}
 						      <tr class="text-center">
-                                <td class="price">{{ post.id }}</td>
+                                <td class="price">{{ forloop.revcounter }}</td>
 						        <td class="product-name">
-						        	<h3><a href="{% url 'accounts:detail' post.id %}">{{ post.title }}</a></h3>
-<!--                                    <a href="#" class="meta-chat"><span class="icon-chat"></span> {{post.comment_set.all.count}}</a>-->
+						        	<a href="{% url 'accounts:detail' post.id %}">{{ post.title }}</a>
+                                    <a href="accounts:detail" class="meta-chat"><span class="icon-chat"></span> {{post.comment_set.all.count}}</a>
 						        </td>
-						        <td class="price">{{ post.author }}</td>
+						        <td class="price">{{ request.session.user_id }}</td>
                                 <td class="price">{{ post.created_date|date:"Y-m-d" }}</td>
-						        <td class="quantity">
-                                     <a href="#" class="btn btn-primary btn-outline-primary">수정</a>
-					            </td>
-                                <td class="product-remove">
-                                    <span><a href="{% url 'accounts:delete' post.id %}" class="icon-close"></a></span>
+                                <td class="price">
+                                    <div>
+
+                                        {{ post.hit }}
+                                    </div>
                                 </td>
+
 						      </tr><!-- END TR-->
                               {% endfor %}
-
+                            {% else %}
+                            <p>There are no posts in the board</p>
+                            {% endif %}
 						    </tbody>
 						  </table>
 					  </div>

@@ -54,7 +54,7 @@
 			<div class="container">
 				<div class="row">
     			<div class="col-md-12 ftco-animate">
-    				<div class="cart-list">
+    				<div>
 	    				<table class="table">
 						    <thead class="thead-primary">
 						      <tr class="text-center">
@@ -63,31 +63,25 @@
 						        <th>작성자</th>
                                 <th>작성날짜</th>
 						        <th>조회수</th>
-
 						      </tr>
 						    </thead>
 						    <tbody>
                             {% if list %}
-                              {% for post in list %}
-						      <tr class="text-center">
-                                <td class="price">{{ forloop.revcounter }}</td>
-						        <td class="product-name">
-						        	<a href="{% url 'accounts:detail' post.id %}">{{ post.title }}</a>
-                                    <a href="accounts:detail" class="meta-chat"><span class="icon-chat"></span> {{post.comment_set.all.count}}</a>
-						        </td>
-						        <td class="price">{{ request.session.user_id }}</td>
-                                <td class="price">{{ post.created_date|date:"Y-m-d" }}</td>
-                                <td class="price">
-                                    <div>
-
-                                        {{ post.hit }}
-                                    </div>
-                                </td>
-
-						      </tr><!-- END TR-->
-                              {% endfor %}
+                                  {% for post in list %}
+                                  <tr class="text-center">
+                                    <td class="price">{{ forloop.revcounter }}</td>
+                                    <td class="product-name">
+                                        <a href="{% url 'accounts:detail' post.id %}">{{ post.title }}</a>
+                                        <a class="price"><span class="icon-chat" href="accounts:detail"></span>({{post.comment_set.all.count}})</a>
+                                    </td>
+<!--                                    <td class="price">{{ request.session.user_id }}</td> &lt;!&ndash; 작성자가 로그인 할때마다 바뀜, 로그아웃하면 안보임 &ndash;&gt;-->
+                                    <td class="price">{{ post.author }}</td>
+                                    <td class="price">{{ post.created_date|date:"Y-m-d" }}</td>
+                                    <td class="price">{{ post.hit }}</td>
+                                  </tr><!-- END TR-->
+                                  {% endfor %}
                             {% else %}
-                            <p>There are no posts in the board</p>
+                                <p>There are no posts in the board</p>
                             {% endif %}
 						    </tbody>
 						  </table>
@@ -98,29 +92,8 @@
 		</section>
         <!-- end of list -->
 
-<!--    <section class="ftco-section">-->
-<!--      <div class="container">-->
-<!--        <div class="row d-flex">-->
-<!--          {% for post in reviews %}-->
-<!--          <div class="col-md-4 d-flex ftco-animate">-->
-<!--            <div class="blog-entry align-self-stretch">-->
-<!--              <a href="blog-single.html" class="block-20" style="background-image: url('/static/images/image_1.jpg');">-->
-<!--              </a>-->
-<!--              <div class="text py-4 d-block">-->
-<!--                <div class="meta">-->
-<!--                  <div><a href="#">{{ post.created_date|date:"Y-m-d" }}</a></div>-->
-<!--                  <div><a href="#">{{ post.author }}</a></div>-->
-<!--                  <div><a href="#" class="meta-chat"><span class="icon-chat"></span> {{post.comment_set.all.count}}</a></div>-->
-<!--                </div>-->
-<!--                <h3 class="heading mt-2"><a href="#">{{ post.title }}</a></h3>-->
-<!--                <p><a href="#">{{ post.contents }}</a></p>-->
-<!--              </div>-->
-<!--            </div>-->
-<!--          </div>-->
-<!--          {%endfor%}-->
-<!--        </div>-->
-<!--      </div>-->
-
+    <section>
+      <div>
         <div class="row mt-5">
           <div class="col text-center">
             <div class="block-27">

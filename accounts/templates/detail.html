@@ -36,7 +36,6 @@
 
 
     <section class="home-slider owl-carousel">
-
       <div class="slider-item" style="background-image: url(/static/images/bg_3.jpg);" data-stellar-background-ratio="0.5">
       	<div class="overlay"></div>
         <div class="container">
@@ -52,29 +51,29 @@
       </div>
     </section>
 
-    <section class="ftco-section">
-      <div class="container">
-        <div class="row">
-          <div class="col-xl-12 ftco-animate">
-
-              {% block container %}
-
-                <div>
-                <input type="hidden" value="{{post.update_counter}}">
-                조회수 : {{ post.hit }}
-                </div>
-
-        <section class="ftco-section">
-            <div class="container">
-            <div class="row">
-            <div class="col-md-8 ftco-animate">
+        <div class="container">
+          {% block container %}
+            <!--조회수 카운트-->
+            <div>
+            <input type="hidden" value="{{post.update_counter}}">
+            </div>
+            <section class="ftco-section">
                 <h2 class="mb-3">{{ post.title }}</h2>
-                <p>{{ post.contents }}</p>
-                <a href="{% url 'accounts:delete' post.id %}" class="btn btn-primary btn-outline-primary">삭제</a>
-                <br><br><br><br><br><br><br>
+                    <p>
+                        <div>
+                        조회수 : {{ post.hit }}　
+                        작성자 : {{ post.author }}　
+                        댓글수 : {{post.comment_set.all.count}}
+                        </div>
+                    </p>
+                <p>{{ post.contents |linebreaksbr }}</p><br><br>
 
-                <form method="post">
-                {% csrf_token %}
+                {% if request.session.user_n == post.author_id %}
+                    <a href="{% url 'accounts:delete' post.id %}" class="btn btn-primary btn-outline-primary">삭제</a>
+                {% endif %}
+                <br>
+                <hr width = "100%" color = "grey">
+
                 <h3 class="mb-5">Leave Comments</h3>
                     {% for comment in comment_list %}
                     <ul class="comment-list">
@@ -82,47 +81,28 @@
                           <div class="comment-body">
                             <h3>{{ comment.author }}</h3>
                             <div class="meta">{{ post.created_date }}</div>
-                            <p>{{comment.text}}</p>
-                              <p class="product-remove"><a href="{% url 'accounts:c_delete' comment.id post.id %}"><span class="icon-close"></span></a></p>
+                            <p>{{comment.text}}　
+                                {% if request.session.user_id == comment.author %}
+                                <a class="product-remove" href="{% url 'accounts:c_delete' comment.id post.id %}"><span class="icon-close"></span></a>
+                                {% endif %}
+                            </p>
                           </div>
-                {% empty %}
-                    <p>No comments here yet</p>
                         </li>
                     </ul>
-                {% endfor %}
-
-
-                    {% load bootstrap4 %}
-
-
-                {% bootstrap_form comment_form %}
-                <button type="submit" class="btn btn-primary">댓글 등록</button>
-                </form>
-
-<!--                <div class="w-100"></div>-->
-<!--                <div class="col-md-12">-->
-<!--                	<div class="form-group mt-4">-->
-
-<!--										<div class="radio">-->
-<!--										  <label class="mr-3"><input type="radio" name="optradio"> Create an Account? </label>-->
-<!--										  <label><input type="radio" name="optradio"> Ship to different address</label>-->
-<!--										</div>-->
-<!--									</div>-->
-<!--                </div>-->
-                 <!-- END -->
+                    {% empty %}
+                        <p>No comments here yet</p>
+                    {% endfor %}
+                    <div class="comment-body">
+                        <form method="post">
+                            {% csrf_token %}
+        <!--                        <input name="author" type="text" class="form-control" placeholder="{{request.session.user_id}}" disabled>-->
+                            <textarea name="text" cols="90" rows="2" class="form-control" placeholder="댓글을 입력해주세요."></textarea>
+                            <br><button type="submit" class="btn btn-primary">댓글 등록</button>
+                        </form>
+                    </div>
+            </section> <!-- END of SECTION 1 -->
               {% endblock %}
-          </div>
         </div>
-      </div>
-    </section> <!-- END of SECTION -->
-
-
-
-
-          </div>
-        </div>
-      </div>
-    </footer>
 
 
 

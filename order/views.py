@@ -125,6 +125,9 @@ def detail(request, product_cd):
 
 # 장바구니 함수 김은수
 def cart(request):
+    if not request.session["check"] == 1:
+        return HttpResponse('<script type="text/javascript">alert("로그인이필요합니다.");history.back(); '
+                            '</script>')
     user_id = request.session['user_id']
     user = get_object_or_404(User, user_id=user_id)
     my_cart = Carts.objects.filter(identity=user)

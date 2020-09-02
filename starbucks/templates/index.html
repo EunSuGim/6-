@@ -408,7 +408,7 @@
 	        <div class="col-md-7 heading-section text-center ftco-animate">
 	        	<span class="subheading">Testimony</span>
 	          <h2 class="mb-4">고객 리뷰</h2>
-	          <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
+<!--	          <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>-->
 	        </div>
 	      </div>
 	    </div>
@@ -417,67 +417,67 @@
 	        <div class="col-lg align-self-sm-end ftco-animate">
 	          <div class="testimony">
 	             <blockquote>
-	                <p>&ldquo;Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic life One day however a small.&rdquo;</p>
+	                <p>{{request.session.recent1_comment}}</p>
 	              </blockquote>
 	              <div class="author d-flex mt-4">
 	                <div class="image mr-3 align-self-center">
-	                  <img src="static/images/person_1.jpg" alt="">
+	                  <img src="/static/images/{{request.session.recent1_category}}/{{request.session.recent1_cd}}.jpg" >
 	                </div>
-	                <div class="name align-self-center">Louise Kelly <span class="position">Illustrator Designer</span></div>
+	                <div class="name align-self-center">{{request.session.recent1_user}} <span class="position">{{request.session.recent1_date}}</span></div>
 	              </div>
 	          </div>
 	        </div>
 	        <div class="col-lg align-self-sm-end">
 	          <div class="testimony overlay">
 	             <blockquote>
-	                <p>&ldquo;Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic life One day however a small line of blind text by the name of Lorem Ipsum decided to leave for the far World of Grammar.&rdquo;</p>
+	                <p>{{request.session.recent2_comment}}</p>
 	              </blockquote>
-	              <div class="author d-flex mt-4">
-	                <div class="image mr-3 align-self-center">
-	                  <img src="static/images/person_2.jpg" alt="">
-	                </div>
-	                <div class="name align-self-center">Louise Kelly <span class="position">Illustrator Designer</span></div>
-	              </div>
+				  <div class="author d-flex mt-4">
+					  <div class="image mr-3 align-self-center">
+						  <img src="/static/images/{{request.session.recent2_category}}/{{request.session.recent2_cd}}.jpg" >
+					  </div>
+					  <div class="name align-self-center">{{request.session.recent2_user}} <span class="position">{{request.session.recent2_date}}</span></div>
+				  </div>
 	          </div>
 	        </div>
 	        <div class="col-lg align-self-sm-end ftco-animate">
 	          <div class="testimony">
 	             <blockquote>
-	                <p>&ldquo;Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic life One day however a small  line of blind text by the name. &rdquo;</p>
+	                <p>{{request.session.recent3_comment}}</p>
 	              </blockquote>
 	              <div class="author d-flex mt-4">
-	                <div class="image mr-3 align-self-center">
-	                  <img src="static/images/person_3.jpg" alt="">
-	                </div>
-	                <div class="name align-self-center">Louise Kelly <span class="position">Illustrator Designer</span></div>
-	              </div>
+					  <div class="image mr-3 align-self-center">
+						  <img src="/static/images/{{request.session.recent3_category}}/{{request.session.recent3_cd}}.jpg" >
+					  </div>
+					  <div class="name align-self-center">{{request.session.recent3_user}} <span class="position">{{request.session.recent3_date}}</span></div>
+				  </div>
 	          </div>
 	        </div>
 	        <div class="col-lg align-self-sm-end">
 	          <div class="testimony overlay">
 	             <blockquote>
-	                <p>&ldquo;Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic life One day however.&rdquo;</p>
+	                <p>{{request.session.recent4_comment}}</p>
 	              </blockquote>
-	              <div class="author d-flex mt-4">
-	                <div class="image mr-3 align-self-center">
-	                  <img src="static/images/person_2.jpg" alt="">
-	                </div>
-	                <div class="name align-self-center">Louise Kelly <span class="position">Illustrator Designer</span></div>
-	              </div>
+				  <div class="author d-flex mt-4">
+					  <div class="image mr-3 align-self-center">
+						  <img src="/static/images/{{request.session.recent4_category}}/{{request.session.recent4_cd}}.jpg" >
+					  </div>
+					  <div class="name align-self-center">{{request.session.recent4_user}} <span class="position">{{request.session.recent4_date}}</span></div>
+				  </div>
 	          </div>
 	        </div>
 	        <div class="col-lg align-self-sm-end ftco-animate">
 	          <div class="testimony">
 	            <blockquote>
-	              <p>&ldquo;Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic life One day however a small  line of blind text by the name. &rdquo;</p>
-	            </blockquote>
-	            <div class="author d-flex mt-4">
-	              <div class="image mr-3 align-self-center">
-	                <img src="static/images/person_3.jpg" alt="">
-	              </div>
-	              <div class="name align-self-center">Louise Kelly <span class="position">Illustrator Designer</span></div>
-	            </div>
-	          </div>
+	              <p>{{request.session.recent5_comment}}</p>
+				</blockquote>
+				  <div class="author d-flex mt-4">
+					  <div class="image mr-3 align-self-center">
+						  <img src="/static/images/{{request.session.recent5_category}}/{{request.session.recent5_cd}}.jpg" >
+					  </div>
+					  <div class="name align-self-center">{{request.session.recent5_user}} <span class="position">{{request.session.recent5_date}}</span></div>
+				  </div>
+			  </div>
 	        </div>
 	      </div>
 	    </div>
@@ -502,27 +502,27 @@
             <div class="ftco-footer-widget mb-4">
               <h2 class="ftco-heading-2">최신 리뷰</h2>
               <div class="block-21 mb-4 d-flex">
-                <a class="blog-img mr-4" style="background-image: url(static/images/image_1.jpg);"></a>
+                <a class="blog-img mr-4" style="background-image: url(/static/images/{{request.session.recent1_category}}/{{request.session.recent1_cd}}.jpg);"></a>
                 <div class="text">
-                  <h3 class="heading"><a href="#">Even the all-powerful Pointing has no control about</a></h3>
+                  <h3 class="heading"><a href="{%url 'order:detail' request.session.recent1_cd%}">{{request.session.recent1_comment}}</a></h3>
                   <div class="meta">
-                    <div><a href="#"><span class="icon-calendar"></span> Sept 15, 2018</a></div>
-                    <div><a href="#"><span class="icon-person"></span> Admin</a></div>
-                    <div><a href="#"><span class="icon-chat"></span> 19</a></div>
-                  </div>
+                    <div><a ><span class="icon-calendar"></span> {{request.session.recent1_date}}</a></div>
+                    <div><a ><span class="icon-person"></span>{{request.session.recent1_user}}</a></div>
+                  </div>http://localhost:8000/order/9300000001568/detail
                 </div>
               </div>
-              <div class="block-21 mb-4 d-flex">
-                <a class="blog-img mr-4" style="background-image: url(static/images/image_2.jpg);"></a>
-                <div class="text">
-                  <h3 class="heading"><a href="#">Even the all-powerful Pointing has no control about</a></h3>
-                  <div class="meta">
-                    <div><a href="#"><span class="icon-calendar"></span> Sept 15, 2018</a></div>
-                    <div><a href="#"><span class="icon-person"></span> Admin</a></div>
-                    <div><a href="#"><span class="icon-chat"></span> 19</a></div>
-                  </div>
-                </div>
-              </div>
+				<div class="block-21 mb-4 d-flex">
+					<a class="blog-img mr-4" style="background-image: url(/static/images/{{request.session.recent2_category}}/{{request.session.recent2_cd}}.jpg);"></a>
+
+					<div class="text">
+						<h3 class="heading"><a href="#">  {{request.session.recent2_comment}}
+						</a></h3>
+						<div class="meta">
+							<div><a ><span class="icon-calendar"></span>{{request.session.recent2_date}}</a></div>
+							<div><a ><span class="icon-person"></span> {{request.session.recent2_user}}</a></div>
+						</div>
+					</div>
+				</div>
             </div>
           </div>
           <div class="col-lg-2 col-md-6 mb-5 mb-md-5">

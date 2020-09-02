@@ -85,7 +85,7 @@ def detail(request, product_cd):
         if flag == "true":
             return redirect("order:cart")
         else:
-            return redirect("/order/{}/detail?kind={}".format(cart.cd, cart.category))
+            return redirect("order:menu")
     else:
 
         if request.GET['kind'] == 'desserts':

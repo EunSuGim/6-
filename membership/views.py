@@ -28,13 +28,11 @@ def recharge(request, user_n) :
         else:
             messages.add_message(request, messages.INFO, '존재하지 않는 번호입니다.')
             return redirect("membership:information", user_n)
-<<<<<<< HEAD
 
-=======
     else:
         messages.add_message(request, messages.INFO, '잘못된 입력입니다.')
         return redirect("membership:information", user_n)
->>>>>>> 591687d52f09fb2ec6388d5427e7f4347d99c22b
+
 def history(request) :
     if request.method == "POST":
         return render(request, "history.html")

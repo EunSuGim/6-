@@ -178,18 +178,18 @@
               </div>
               <div class="media-body">
                 <h3 class="heading">Easy to Order</h3>
-                <p>Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic.</p>
+<!--                <p>Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic.</p>-->
               </div>
             </div>
           </div>
           <div class="col-md-4 ftco-animate">
             <div class="media d-block text-center block-6 services">
               <div class="icon d-flex justify-content-center align-items-center mb-5">
-              	<span class="flaticon-delivery-truck"></span>
+              	<span class="flaticon-coffee-cup"></span>
               </div>
               <div class="media-body">
-                <h3 class="heading">Fastest Delivery</h3>
-                <p>Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic.</p>
+                <h3 class="heading">Diverse drinks</h3>
+<!--                <p>Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic.</p>-->
               </div>
             </div>
           </div>
@@ -199,7 +199,7 @@
               	<span class="flaticon-coffee-bean"></span></div>
               <div class="media-body">
                 <h3 class="heading">Quality Coffee</h3>
-                <p>Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic.</p>
+<!--                <p>Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic.</p>-->
               </div>
             </div>
           </div>
@@ -217,7 +217,7 @@
 		            <div class="block-18 text-center">
 		              <div class="text">
 		              	<div class="icon"><span class="flaticon-coffee-cup"></span></div>
-		              	<strong class="number" data-number="100">0</strong>
+		              	<strong class="number" data-number="1442">0</strong>
 		              	<span>Coffee Branches</span>
 		              </div>
 		            </div>
@@ -226,7 +226,7 @@
 		            <div class="block-18 text-center">
 		              <div class="text">
 		              	<div class="icon"><span class="flaticon-coffee-cup"></span></div>
-		              	<strong class="number" data-number="85">0</strong>
+		              	<strong class="number" data-number="170">0</strong>
 		              	<span>Number of Awards</span>
 		              </div>
 		            </div>
@@ -235,7 +235,7 @@
 		            <div class="block-18 text-center">
 		              <div class="text">
 		              	<div class="icon"><span class="flaticon-coffee-cup"></span></div>
-		              	<strong class="number" data-number="10567">0</strong>
+		              	<strong class="number" data-number="6000000">0</strong>
 		              	<span>Happy Customer</span>
 		              </div>
 		            </div>
@@ -244,7 +244,7 @@
 		            <div class="block-18 text-center">
 		              <div class="text">
 		              	<div class="icon"><span class="flaticon-coffee-cup"></span></div>
-		              	<strong class="number" data-number="900">0</strong>
+		              	<strong class="number" data-number="291000">0</strong>
 		              	<span>Staff</span>
 		              </div>
 		            </div>
@@ -398,94 +398,99 @@
 		        </div>
 		      </div>
 		    </div>
-    	</div>
-    </section>
+		</div>
+		</section>
 
-    <section class="ftco-section img" id="ftco-testimony" style="background-image: url(static/images/bg_1.jpg);"  data-stellar-background-ratio="0.5">
-    	<div class="overlay"></div>
-	    <div class="container">
-	      <div class="row justify-content-center mb-5">
-	        <div class="col-md-7 heading-section text-center ftco-animate">
-	        	<span class="subheading">Testimony</span>
-	          <h2 class="mb-4">고객 리뷰</h2>
-
-<!--	          <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>-->
-	        </div>
-	      </div>
-	    </div>
-	    <div class="container-wrap">
-	      <div class="row d-flex no-gutters">
-	        <div class="col-lg align-self-sm-end ftco-animate">
-	          <div class="testimony">
-	             <blockquote>
-
-					 <!--<div class="alert alert-danger"> {%for review in reviews%}
-					 {{review.comment}}
-					 {%endfor%}
-					 </div>-->
-	                <p></p>
-	              </blockquote>
-	              <div class="author d-flex mt-4">
-	                <div class="image mr-3 align-self-center">
-	                  <!--<img src="/static/images/{{request.session.recent1_category}}/{{request.session.recent1_cd}}.jpg" >-->
-	                </div>
-	                <!--<div class="name align-self-center">{{request.session.recent1_user}} <span class="position">{{request.session.recent1_date}}</span></div>-->
-	              </div>
-	          </div>
-	        </div>
-	        <div class="col-lg align-self-sm-end">
-	          <div class="testimony overlay">
-	             <blockquote>
-	                <p></p>
-	              </blockquote>
-				  <div class="author d-flex mt-4">
-					  <div class="image mr-3 align-self-center">
+  <section class="ftco-section img" id="ftco-testimony" style="background-image: url(static/images/bg_1.jpg);"  data-stellar-background-ratio="0.5">
+	  <div class="overlay"></div>
+	  <div class="container">
+		  <div class="row justify-content-center mb-5">
+			  <div class="col-md-7 heading-section text-center ftco-animate">
+				  <span class="subheading">Testimony</span>
+				  <h2 class="mb-4">고객 리뷰</h2>
+			  </div>
+		  </div>
+	  </div>
+	  <div class="container-wrap">
+		  <div class="row d-flex no-gutters">
+			  {%if my_list5|length == 1 %}
+			  {%for r,u,h in my_list5%}
+			  <div class="col-lg align-self-sm-end ftco-animate">
+				  <div class="testimony">
+					  <blockquote>
+						  <p>{{r.comment}}</p>
+					  </blockquote>
+					  <div class="author d-flex mt-4">
+						  <div class="image mr-3 align-self-center">
+							  <img src="/static/images/{{h.category}}/{{h.cd}}.jpg" >
+						  </div>
+						  <div class="name align-self-center">{{u.user_id}}<span class="position">{{r.create_date|date:"Y-m-d"}}</span></div>
 					  </div>
-					  <div class="name align-self-center"><span class="position"></span></div>
-				  </div>
-	          </div>
-	        </div>
-	        <div class="col-lg align-self-sm-end ftco-animate">
-	          <div class="testimony">
-	             <blockquote>
-	                <p></p>
-	              </blockquote>
-	              <div class="author d-flex mt-4">
-					  <div class="image mr-3 align-self-center">
-					  </div>
-					  <div class="name align-self-center"> <span class="position"></span></div>
-				  </div>
-	          </div>
-	        </div>
-	        <div class="col-lg align-self-sm-end">
-	          <div class="testimony overlay">
-	             <blockquote>
-	                <p></p>
-	              </blockquote>
-				  <div class="author d-flex mt-4">
-					  <div class="image mr-3 align-self-center">
-					  </div>
-					  <div class="name align-self-center"><span class="position"></span></div>
-				  </div>
-	          </div>
-	        </div>
-	        <div class="col-lg align-self-sm-end ftco-animate">
-	          <div class="testimony">
-	            <blockquote>
-	              <p></p>
-				</blockquote>
-				  <div class="author d-flex mt-4">
-					  <div class="image mr-3 align-self-center">
-					  </div>
-					  <div class="name align-self-center"> <span class="position"></span></div>
 				  </div>
 			  </div>
-	        </div>
-	      </div>
-	    </div>
-	  </section>
+			  {%endfor%}
+			  <div class="col-lg align-self-sm-end ftco-animate">
+				  <div class="testimony">
+					  <blockquote>
+						  <p></p>
+					  </blockquote>
+					  <div class="author d-flex mt-4">
+						  <div class="image mr-3 align-self-center">
+							  <!--								<img src="/static/images/{{h.category}}/{{h.cd}}.jpg" >-->
+						  </div>
+						  <div class="name align-self-center"><span class="position"></span></div>
+					  </div>
+				  </div>
+			  </div>
+			  {%elif not my_list5%}
+			  <div class="col-lg align-self-sm-end ftco-animate">
+				  <div class="testimony">
+					  <blockquote>
+						  <p></p>
+					  </blockquote>
+					  <div class="author d-flex mt-4">
+						  <div class="image mr-3 align-self-center">
+						  </div>
+						  <div class="name align-self-center"><span class="position"></span></div>
+					  </div>
+				  </div>
+			  </div>
+			  <div class="col-lg align-self-sm-end ftco-animate">
+				  <div class="testimony">
+					  <blockquote>
+						  <p></p>
+					  </blockquote>
+					  <div class="author d-flex mt-4">
+						  <div class="image mr-3 align-self-center">
+						  </div>
+						  <div class="name align-self-center"><span class="position"></span></div>
+					  </div>
+				  </div>
+			  </div>
+			  {%else%}
+			  {%for r,u,h in my_list5%}
+			  <div class="col-lg align-self-sm-end ftco-animate">
+				  <div class="testimony">
+					  <blockquote>
+						  <p>{{r.comment}}</p>
+					  </blockquote>
+					  <div class="author d-flex mt-4">
+						  <div class="image mr-3 align-self-center">
+							  <img src="/static/images/{{h.category}}/{{h.cd}}.jpg" >
+						  </div>
+						  <div class="name align-self-center">{{u.user_id}}<span class="position">{{r.create_date|date:"Y-m-d"}}</span></div>
+					  </div>
+				  </div>
+			  </div>
+			  {%endfor%}
+			  {%endif%}
+		  </div>
+	  </div>
+  </section>
+  <!-- 노란리뷰 끝 -->
 
-    <footer class="ftco-footer ftco-section img">
+
+  <footer class="ftco-footer ftco-section img">
     	<div class="overlay"></div>
       <div class="container">
         <div class="row mb-5">
@@ -494,49 +499,77 @@
               <h2 class="ftco-heading-2">Online Community</h2>
 <!--              <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>-->
               <ul class="ftco-footer-social list-unstyled float-md-left float-lft mt-5">
-                <li class="ftco-animate"><a href="https://twitter.com/StarbucksKorea"><span class="icon-twitter"></span></a></li>
-                <li class="ftco-animate"><a href="https://www.facebook.com/starbuckskorea"><span class="icon-facebook"></span></a></li>
-                <li class="ftco-animate"><a href="https://instagram.com/starbuckskorea/"><span class="icon-instagram"></span></a></li>
-              </ul>
-            </div>
-          </div>
-          <div class="col-lg-4 col-md-6 mb-5 mb-md-5">
-            <div class="ftco-footer-widget mb-4">
-              <h2 class="ftco-heading-2">최신 리뷰</h2>
-              <div class="block-21 mb-4 d-flex">
-
-                <div class="text">
-                  <h3 class="heading">}</h3>
-                  <div class="meta">
-                    <div><a ><span class="icon-calendar"></span></a></div>
-                    <div><a ><span class="icon-person"></span></a></div>
-                  </div>
-                </div>
-              </div>
-				<div class="block-21 mb-4 d-flex">
-
-					<div class="text">
-						<h3 class="heading"><a href="#">
-						</a></h3>
-						<div class="meta">
-							<div><a ><span class="icon-calendar"></span></a></div>
-							<div><a ><span class="icon-person"></span> </a></div>
+				  <li class="ftco-animate"><a href="https://twitter.com/StarbucksKorea"><span class="icon-twitter"></span></a></li>
+				  <li class="ftco-animate"><a href="https://www.facebook.com/starbuckskorea"><span class="icon-facebook"></span></a></li>
+				  <li class="ftco-animate"><a href="https://instagram.com/starbuckskorea/"><span class="icon-instagram"></span></a></li>
+			  </ul>
+			</div>
+		  </div>
+			<div class="col-lg-4 col-md-6 mb-5 mb-md-5">
+				<div class="ftco-footer-widget mb-4">
+					<h2 class="ftco-heading-2">최신 리뷰</h2>
+					<!--------------------------->
+					{%if not my_list2 %}
+					<div class="block-21 mb-4 d-flex">
+						<a ></a>
+						<div class="text">
+							<h3 class="heading"><a ></a></h3>
+							<div class="meta">
+								<div><a ><span class="icon-calendar"></span></a></div>
+								<div><a ><span class="icon-person"></span></a></div>
+							</div>
 						</div>
 					</div>
-				</div>
+					<div class="block-21 mb-4 d-flex">
+						<a ></a>
+						<div class="text">
+							<h3 class="heading"><a ></a></h3>
+							<div class="meta">
+								<div><a ><span class="icon-calendar"></span></a></div>
+								<div><a ><span class="icon-person"></span></a></div>
+							</div>
+						</div>
+					</div>
+					{% elif my_list2|length == 1 %}
+					{%for r,u,h in my_list2%}
+					<div class="block-21 mb-4 d-flex">
+						<a class="blog-img mr-4" style="background-image: url(/static/images/{{h.category}}/{{h.cd}}.jpg);"></a>
+						<div class="text">
+							<h3 class="heading"><a href="order/{{h.cd}}/detail?kind={{h.category}}">{{r.comment}}</a></h3>
+							<div class="meta">
+								<div><a ><span class="icon-calendar"></span>{{r.create_date|date:"Y-m-d"}}</a></div>
+								<div><a ><span class="icon-person"></span>{{u.user_id}}</a></div>
+							</div>
+						</div>
+					</div>
+					{%endfor%}
+					<div class="block-21 mb-4 d-flex">
+						<a ></a>
+						<div class="text">
+							<h3 class="heading"><a ></a></h3>
+							<div class="meta">
+								<div><a ><span class="icon-calendar"></span></a></div>
+								<div><a ><span class="icon-person"></span></a></div>
+							</div>
+						</div>
+					</div>
+					{%else%}
+					{%for r,u,h in my_list2%}
+					<div class="block-21 mb-4 d-flex">
+						<a class="blog-img mr-4" style="background-image: url(/static/images/{{h.category}}/{{h.cd}}.jpg);"></a>
+						<div class="text">
+							<h3 class="heading"><a href="order/{{h.cd}}/detail?kind={{h.category}}">{{r.comment}}</a></h3>
+							<div class="meta">
+								<div><a ><span class="icon-calendar"></span>{{r.create_date|date:"Y-m-d"}}</a></div>
+								<div><a ><span class="icon-person"></span>{{u.user_id}}</a></div>
+							</div>
+						</div>
+					</div>
+					{%endfor%}
+					{%endif%}
             </div>
           </div>
-          <div class="col-lg-2 col-md-6 mb-5 mb-md-5">
-             <div class="ftco-footer-widget mb-4 ml-md-4">
-              <h2 class="ftco-heading-2">Services</h2>
-              <ul class="list-unstyled">
-                <li><a href="#" class="py-2 d-block">Cooked</a></li>
-                <li><a href="#" class="py-2 d-block">Deliver</a></li>
-                <li><a href="#" class="py-2 d-block">Quality Foods</a></li>
-                <li><a href="#" class="py-2 d-block">Mixed</a></li>
-              </ul>
-            </div>
-          </div>
+			<!-----------댓글끝------------->
           <div class="col-lg-3 col-md-6 mb-5 mb-md-5">
             <div class="ftco-footer-widget mb-4">
             	<h2 class="ftco-heading-2">Have a Questions?</h2>

@@ -6,6 +6,8 @@ from django.core.paginator import Paginator
 from django.http import HttpResponse
 from django.contrib.auth.mixins import LoginRequiredMixin
 import math
+from datetime import datetime
+
 
 
 # Create your views here.
@@ -137,9 +139,11 @@ def cart(request):
 
         if pay == "true":
             # ----------박근웅----------
+            order_no = int(datetime.today().strftime('%Y%m%d%H%M'))
+
             for i in my_cart:
                 History.objects.create(user_id=user.id, name=i.name, quantity=i.quantity, total=i.total, cd=i.cd,
-                                       category=i.category)
+                                       category=i.category, order_no=order_no, select_adr =user.select_adr)
             # -------------------------
             user.point = user.point - pay_products
             if user.point >= 0:
@@ -198,7 +202,6 @@ def insert_adr(request):
     session = get_object_or_404(User, user_id=user_id)
 
     adrValue= request.GET.get('adrValue')
-
 
     session.select_adr = adrValue
 

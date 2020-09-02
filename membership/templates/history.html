@@ -48,22 +48,25 @@
 		<section class="ftco-section ftco-cart">
 			<div class="container">
 				<div class="row">
-                    <label> {{user.select_adr}} </label>
+<!--                    <label> {{user.select_adr}} </label>-->
 					<div class="col-md-12 ftco-animate">
                         <div class="cart-list">
                             <table class="table">
                                 <thead class="thead-primary">
                                 <tr class="text-center">
+                                    <th>주문번호</th>
                                     <th>제품</th>
-                                    <th>제품정보</th>
+                                    <th>제품명</th>
                                     <th>개수</th>
                                     <th>주문금액</th>
                                     <th>주문일자</th>
+                                    <th>주문매장</th>
                                     <th>후기</th>
                                 </tr>
                                 <tbody>
                                 {%for history in histories%}
                                 <tr class="text-center">
+                                    <td class="total">{{history.order_no}}</td>
                                     <td class="image-prod"><div class="img" style="background-image:url(/static/images/{{history.category}}/{{history.cd}}.jpg);"></div></td>
                                     <td class="product-name">
                                         <a href="#">{{history.name}}</a>
@@ -71,6 +74,7 @@
                                     <td class="total">{{history.quantity}}</td>
                                     <td class="total">{{history.total}}</td>
                                     <td class="total">{{history.order_date|date:"Y-m-d"}}</td>
+                                    <td class="total">{{history.select_adr}}</td>
                                     {%if history.review_set.all%}
                                             <td class="total">작성완료</td>
                                     {%else%}

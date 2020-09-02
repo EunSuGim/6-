@@ -41,6 +41,7 @@ def detail(request, product_cd):
 
         if category == "coffee":
             product = get_object_or_404(Coffee, cd=product_cd)
+           
         elif category == "desserts":
             product = get_object_or_404(Desserts, cd=product_cd)
         else:

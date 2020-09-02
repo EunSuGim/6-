@@ -86,7 +86,7 @@ def p_list(request):
 def p_create(request):
     if request.method == 'POST':
         post = Post()
-        post.author = request.session['user_id']
+        post.author_id = request.session['user_n']
         post.title = request.POST['title']
         post.contents = request.POST['contents']
         post.qtype = request.POST['choice']
@@ -152,6 +152,16 @@ def c_delete(request, comment_id, post_id):
     path = "/accounts/{}/detail".format(post_id)
     return redirect(path)
 
+
+# def hits(request, no=0):
+#     if no == 0: return HttpResponseRedirect('list')
+#
+#     post = Post.objects.filter(id=no)
+#     post.update(hit=F('hit')+1)
+#     data = {
+#         'post':post[0]
+#     }
+#     return render(request, 'accounts:list', data)
 
 
 

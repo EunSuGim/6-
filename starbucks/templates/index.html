@@ -408,6 +408,7 @@
 	        <div class="col-md-7 heading-section text-center ftco-animate">
 	        	<span class="subheading">Testimony</span>
 	          <h2 class="mb-4">고객 리뷰</h2>
+
 <!--	          <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>-->
 	        </div>
 	      </div>
@@ -417,65 +418,66 @@
 	        <div class="col-lg align-self-sm-end ftco-animate">
 	          <div class="testimony">
 	             <blockquote>
-	                <p>{{request.session.recent1_comment}}</p>
+
+					 <!--<div class="alert alert-danger"> {%for review in reviews%}
+					 {{review.comment}}
+					 {%endfor%}
+					 </div>-->
+	                <p></p>
 	              </blockquote>
 	              <div class="author d-flex mt-4">
 	                <div class="image mr-3 align-self-center">
-	                  <img src="/static/images/{{request.session.recent1_category}}/{{request.session.recent1_cd}}.jpg" >
+	                  <!--<img src="/static/images/{{request.session.recent1_category}}/{{request.session.recent1_cd}}.jpg" >-->
 	                </div>
-	                <div class="name align-self-center">{{request.session.recent1_user}} <span class="position">{{request.session.recent1_date}}</span></div>
+	                <!--<div class="name align-self-center">{{request.session.recent1_user}} <span class="position">{{request.session.recent1_date}}</span></div>-->
 	              </div>
 	          </div>
 	        </div>
 	        <div class="col-lg align-self-sm-end">
 	          <div class="testimony overlay">
 	             <blockquote>
-	                <p>{{request.session.recent2_comment}}</p>
+	                <p></p>
 	              </blockquote>
 				  <div class="author d-flex mt-4">
 					  <div class="image mr-3 align-self-center">
-						  <img src="/static/images/{{request.session.recent2_category}}/{{request.session.recent2_cd}}.jpg" >
 					  </div>
-					  <div class="name align-self-center">{{request.session.recent2_user}} <span class="position">{{request.session.recent2_date}}</span></div>
+					  <div class="name align-self-center"><span class="position"></span></div>
 				  </div>
 	          </div>
 	        </div>
 	        <div class="col-lg align-self-sm-end ftco-animate">
 	          <div class="testimony">
 	             <blockquote>
-	                <p>{{request.session.recent3_comment}}</p>
+	                <p></p>
 	              </blockquote>
 	              <div class="author d-flex mt-4">
 					  <div class="image mr-3 align-self-center">
-						  <img src="/static/images/{{request.session.recent3_category}}/{{request.session.recent3_cd}}.jpg" >
 					  </div>
-					  <div class="name align-self-center">{{request.session.recent3_user}} <span class="position">{{request.session.recent3_date}}</span></div>
+					  <div class="name align-self-center"> <span class="position"></span></div>
 				  </div>
 	          </div>
 	        </div>
 	        <div class="col-lg align-self-sm-end">
 	          <div class="testimony overlay">
 	             <blockquote>
-	                <p>{{request.session.recent4_comment}}</p>
+	                <p></p>
 	              </blockquote>
 				  <div class="author d-flex mt-4">
 					  <div class="image mr-3 align-self-center">
-						  <img src="/static/images/{{request.session.recent4_category}}/{{request.session.recent4_cd}}.jpg" >
 					  </div>
-					  <div class="name align-self-center">{{request.session.recent4_user}} <span class="position">{{request.session.recent4_date}}</span></div>
+					  <div class="name align-self-center"><span class="position"></span></div>
 				  </div>
 	          </div>
 	        </div>
 	        <div class="col-lg align-self-sm-end ftco-animate">
 	          <div class="testimony">
 	            <blockquote>
-	              <p>{{request.session.recent5_comment}}</p>
+	              <p></p>
 				</blockquote>
 				  <div class="author d-flex mt-4">
 					  <div class="image mr-3 align-self-center">
-						  <img src="/static/images/{{request.session.recent5_category}}/{{request.session.recent5_cd}}.jpg" >
 					  </div>
-					  <div class="name align-self-center">{{request.session.recent5_user}} <span class="position">{{request.session.recent5_date}}</span></div>
+					  <div class="name align-self-center"> <span class="position"></span></div>
 				  </div>
 			  </div>
 	        </div>
@@ -502,24 +504,23 @@
             <div class="ftco-footer-widget mb-4">
               <h2 class="ftco-heading-2">최신 리뷰</h2>
               <div class="block-21 mb-4 d-flex">
-                <a class="blog-img mr-4" style="background-image: url(/static/images/{{request.session.recent1_category}}/{{request.session.recent1_cd}}.jpg);"></a>
+
                 <div class="text">
-                  <h3 class="heading"><a href="{%url 'order:detail' request.session.recent1_cd%}">{{request.session.recent1_comment}}</a></h3>
+                  <h3 class="heading">}</h3>
                   <div class="meta">
-                    <div><a ><span class="icon-calendar"></span> {{request.session.recent1_date}}</a></div>
-                    <div><a ><span class="icon-person"></span>{{request.session.recent1_user}}</a></div>
-                  </div>http://localhost:8000/order/9300000001568/detail
+                    <div><a ><span class="icon-calendar"></span></a></div>
+                    <div><a ><span class="icon-person"></span></a></div>
+                  </div>
                 </div>
               </div>
 				<div class="block-21 mb-4 d-flex">
-					<a class="blog-img mr-4" style="background-image: url(/static/images/{{request.session.recent2_category}}/{{request.session.recent2_cd}}.jpg);"></a>
 
 					<div class="text">
-						<h3 class="heading"><a href="#">  {{request.session.recent2_comment}}
+						<h3 class="heading"><a href="#">
 						</a></h3>
 						<div class="meta">
-							<div><a ><span class="icon-calendar"></span>{{request.session.recent2_date}}</a></div>
-							<div><a ><span class="icon-person"></span> {{request.session.recent2_user}}</a></div>
+							<div><a ><span class="icon-calendar"></span></a></div>
+							<div><a ><span class="icon-person"></span> </a></div>
 						</div>
 					</div>
 				</div>

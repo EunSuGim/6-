@@ -69,20 +69,20 @@ def r_create(request, history_id):
             review.history_id = history.id                  # history
             review.save()
             # ----------reviews of index---------
-            reviews = Review.objects.all().order_by('-id')
-            j = 1
-            for recent in reviews :
-                if j == 6:
-                    break
-                user = get_object_or_404(User,id=recent.user_id)
-                product = get_object_or_404(History,id=recent.history_id)
-                request.session['recent{}_user'.format(j)]  = user.user_id
-                request.session['recent{}_comment'.format(j)] =  recent.comment
-                request.session['recent{}_product'.format(j)] =  product.name
-                request.session['recent{}_date'.format(j)] = product.order_date.strftime('%Y-%m-%d')
-                request.session['recent{}_cd'.format(j)] = product.cd
-                request.session['recent{}_category'.format(j)] = product.category
-                j+=1
+            # reviews = Review.objects.all().order_by('-id')
+            # j = 1
+            # for recent in reviews :
+            #     if j == 6:
+            #         break
+            #     user = get_object_or_404(User,id=recent.user_id)
+            #     product = get_object_or_404(History,id=recent.history_id)
+            #     request.session['recent{}_user'.format(j)]  = user.user_id
+            #     request.session['recent{}_comment'.format(j)] =  recent.comment
+            #     request.session['recent{}_product'.format(j)] =  product.name
+            #     request.session['recent{}_date'.format(j)] = product.order_date.strftime('%Y-%m-%d')
+            #     request.session['recent{}_cd'.format(j)] = product.cd
+            #     request.session['recent{}_category'.format(j)] = product.category
+            #     j+=1
             #------------------------------------
             return redirect('membership:history', request.session['user_n'] )
     else:

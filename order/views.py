@@ -142,6 +142,7 @@ def cart(request):
     user = get_object_or_404(User, user_id=user_id)
     my_cart = Carts.objects.filter(identity=user)
 
+    print(user)
     pay_products = 0
 
     for i in my_cart:

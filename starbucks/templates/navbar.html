@@ -24,20 +24,18 @@
 				      {% if request.resolver_match.url_name == 'information' %}
 				      <li class="nav-item active"><a href="{% url 'membership:information' request.session.user_n%}" class="nav-link" >My Starbucks</a></li>
 				      {%else%}
-<<<<<<< HEAD
+
 					  <li class="nav-item"><a href="{% url 'membership:information' request.session.user_n%}" class="nav-link" >My Starbucks</a></li>
-=======
-				      <li class="nav-item"><a href="{% url 'membership:information' request.session.user_n%}" class="nav-link" >My Starbucks</a></li>
->>>>>>> master
+
 				      {%endif%}
 				  {%else%}
 				  <li class="nav-item"><a href="{% url 'accounts:login' %}" class="nav-link" >My Starbucks</a></li>
 				  {% endif %}
 				  <!-----------voc------------>
 				  {% if request.resolver_match.url_name == 'voc' %}
-				  <li class="nav-item active"><a href="accounts/list" class="nav-link">VOC</a></li>
+				  <li class="nav-item active"><a href="{% url 'accounts:list' %}" class="nav-link">VOC</a></li>
 				  {% else %}
-				  <li class="nav-item"><a href="accounts/list" class="nav-link">VOC</a></li>
+				  <li class="nav-item"><a href="{% url 'accounts:list' %}" class="nav-link">VOC</a></li>
 				  {% endif %}
 				  <!-----------logout----------->
 				  {% if request.session.check == 1 %}

@@ -57,20 +57,24 @@
             <div>
             <input type="hidden" value="{{post.update_counter}}">
             </div>
-            <section class="ftco-section">
+            <section class="billing-form ftco-bg-dark p-3 p-md-5">
+                <form method="post">
+                    {% csrf_token %}
                 <h2 class="mb-3">{{ post.title }}</h2>
                     <p>
                         <div>
-                        조회수 : {{ post.hit }}　
-                        작성자 : {{ post.author }}　
-                        댓글수 : {{post.comment_set.all.count}}
+                            조회수 : {{ post.hit }}　
+                            작성자 : {{ post.author }}　
+                            댓글수 : {{ post.comment_set.all.count }}
                         </div>
                     </p>
                 <p>{{ post.contents |linebreaksbr }}</p><br><br>
 
                 {% if request.session.user_n == post.author_id %}
                     <a href="{% url 'accounts:delete' post.id %}" class="btn btn-primary btn-outline-primary">삭제</a>
+                    <button type="submit" class="btn btn-primary btn-outline-primary">수정</button>
                 {% endif %}
+                </form>
                 <br>
                 <hr width = "100%" color = "grey">
 
@@ -78,9 +82,9 @@
                     {% for comment in comment_list %}
                     <ul class="comment-list">
                         <li class="comment">
-                          <div class="comment-body">
-                            <h3>{{ comment.author }}</h3>
-                            <div class="meta">{{ post.created_date }}</div>
+                          <div class="comment">
+                            <h5>{{ comment.author }}</h5>
+                            <p class="text-light">{{ post.created_date|date:"Y-m-d"}}</p>
                             <p>{{comment.text}}　
                                 {% if request.session.user_id == comment.author %}
                                 <a class="product-remove" href="{% url 'accounts:c_delete' comment.id post.id %}"><span class="icon-close"></span></a>

@@ -28,6 +28,12 @@
     <link rel="stylesheet" href="/static/css/flaticon.css">
     <link rel="stylesheet" href="/static/css/icomoon.css">
     <link rel="stylesheet" href="/static/css/style.css">
+
+      <style>
+           body .option_color{
+                        color:black !important;
+                        }
+      </style>
   </head>
 
   <body>
@@ -67,7 +73,7 @@
                     <!-- 제목 -->
 	          		<div class="col-md-12">
 	                <div class="form-group">
-	                	<label for="title">제목</label>
+	                	<label >제목</label>
 	                  <input name="title" type="text" class="form-control" placeholder="제목을 입력하세요.">
 	                </div>
 	                </div>
@@ -75,16 +81,18 @@
                     <div class="w-100"></div>
 		            <div class="col-md-12">
 		            	<div class="form-group" name="choice2">
-		            		<label for="VOC_demand">문의유형</label>
+		            		<label >문의유형</label>
 		            		<div class="select-wrap">
 		                  <div class="icon"><span class="ion-ios-arrow-down"></span></div>
+
 		                  <select name="choice" id="choice" class="form-control">
-		                  	<option value="매장">매장</option>
-		                    <option value="시스템">시스템</option>
-		                    <option value="제품/상품">제품/상품</option>
-		                    <option value="프로모션/이벤트">프로모션/이벤트</option>
-		                    <option value="기프트카드">기프트카드</option>
-		                    <option value="고객센터">고객센터</option>
+		                  	<option class="option_color" value="매장">매장</option>
+
+		                    <option class="option_color" value="시스템">시스템</option>
+		                    <option class="option_color" value="제품/상품">제품/상품</option>
+		                    <option class="option_color" value="프로모션/이벤트">프로모션/이벤트</option>
+		                    <option class="option_color" value="기프트카드">기프트카드</option>
+		                    <option class="option_color" value="고객센터">고객센터</option>
 		                  </select>
 		                </div>
 		            	</div>
@@ -94,7 +102,7 @@
 		            <div class="w-100"></div>
 		            <div class="col-md-12">
 		            	<div class="form-group">
-	                	<label for="contents">글 내용</label>
+	                	<label>글 내용</label>
                         <textarea name="contents" cols="100" rows="15" class="form-control" placeholder="내용을 입력하세요."></textarea>
 	                    </div>
 		            </div>
@@ -103,7 +111,7 @@
 		            <div class="w-100"></div>
 		            <div class="col-md-6">
 	                <div class="form-group">
-	                	<label for="phone">연락처</label>
+	                	<label>연락처</label>
 	                  <input type="text" class="form-control" placeholder="ex) 010-1234-5678">
 	                </div>
 	                </div>

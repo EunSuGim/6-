@@ -123,18 +123,18 @@ def p_detail(request, post_id):
     post = get_object_or_404(Post, pk=post_id)
 
     if request.method == 'POST':
-        comment_form = CommentForm(request.POST)
-        if comment_form.is_valid():
-            tmp = comment_form.save(commit=False)
-            tmp.post = post
-            comment_form.save()
-            # path = "/posts/"+post_id+"/detail/"
-            path = "/accounts/{}/detail/".format(post_id)
-            return redirect(path)
+        comment = Comment()
+        comment.text = request.POST['text']
+        comment.post = post
+        comment.created_date = datetime.now()
+        comment.author = request.session['user_id']
+        comment.save()
+
+        return redirect(f'/accounts/{post_id}/detail/')
 
     else:
         comment = post.comment_set.all()
-        comment.author = request.session['user_id']
+        comment.author = request.session['user_n']
         comment_form = CommentForm(request.POST)
         post_form = PostForm(instance=post)
         context = {'comment_list': comment, 'post_form': post_form, 'comment_form': comment_form, 'post': post}

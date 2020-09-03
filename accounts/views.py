@@ -108,14 +108,36 @@ def p_delete(request, post_id):
 
 
 # def p_update(request, post_id):
+#
 #     post = get_object_or_404(Post, pk=post_id)
+#     post
 #
-#     if request.method == 'POST':
-#         post_form = PostForm(request.POST, instance=post)
-#
-#         if post_form.is_valid():
-#             post_form.save()
-#             return redirect('reviews:list')
+#     return redirect('accounts:list')
+
+def p_update(request, post_id):
+
+    post = Post.objects.get(id=post_id)
+    print(request.POST['updated'])
+
+    if request.method == 'POST':
+        post.author_id = request.session['user_n']
+        post.title = request.POST['title']
+        post.contents = request.POST['contents']
+        post.qtype = request.POST['choice']
+        post.created_date = datetime.now()
+        post.save()
+        return redirect('/accounts/list/' + str(post_id))
+
+    else:
+        return render(request, 'update.html')
+
+
+    # if request.method == 'POST':
+    #     post_form = PostForm(request.POST, instance=post)
+    #
+    #     if post_form.is_valid():
+    #         post_form.save()
+    #         return redirect('reviews:list')
 
 
 def p_detail(request, post_id):

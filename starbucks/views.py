@@ -7,7 +7,7 @@ import random
 
 def give_reviews(request):
     reviews = Review.objects.all().order_by('-id')
-    my_list2 = []
+    # my_list2 = []
     my_list5 = []
     j=0
     for review in reviews :
@@ -15,8 +15,8 @@ def give_reviews(request):
         history = get_object_or_404(History, id = review.history_id)
         temp= (review, user, history)
         my_list5.append(temp)
-        if j < 2:
-            my_list2.append(temp)
+        # if j < 2:
+            # my_list2.append(temp)
 
         if j == 4:
             break
@@ -31,7 +31,7 @@ def give_reviews(request):
     goods_list = goods[0:3]
     #------------------
 
-    return render(request, "index.html", {"my_list2": my_list2, "my_list5": my_list5,"coffee": coffee_list, "desserts": desserts_list, "goods": goods_list})
+    return render(request, "index.html", { "my_list5": my_list5,"coffee": coffee_list, "desserts": desserts_list, "goods": goods_list})
 
 # def give_footer(request) :
 #     reviews = Review.objects.all().order_by('-id')

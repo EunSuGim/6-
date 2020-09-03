@@ -23,6 +23,9 @@ class History(models.Model):
     cd = models.IntegerField('cd',null=True)
     category = models.CharField('카테고리',max_length=20,null=True)
     completed = models.BooleanField('후기유무',default=False)
+    select_adr = models.CharField('주문매장', max_length=20, blank=True, null=True)
+    order_no = models.IntegerField('주문번호',default=0)
+
 
     def __str__(self):
         return self.name

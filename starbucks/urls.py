@@ -17,12 +17,13 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf.urls import url
 from django.views.generic.base import TemplateView
-
+from starbucks import views
 
 urlpatterns = [
 
     path('accounts/', include('accounts.urls')),  # 아인
-    url(r"^$", TemplateView.as_view(template_name="index.html"), name="home"),
+    url(r"^$",  views.give_reviews, name="home"),  # 근웅
+    # url(r"^$", TemplateView.as_view(template_name="index.html"), views.give_reviews,name="home"),
     path('admin/', admin.site.urls),
     path("membership/", include("membership.urls")),
     path('order/', include('order.urls'))

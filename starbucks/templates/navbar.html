@@ -24,7 +24,11 @@
 				      {% if request.resolver_match.url_name == 'information' %}
 				      <li class="nav-item active"><a href="{% url 'membership:information' request.session.user_n%}" class="nav-link" >My Starbucks</a></li>
 				      {%else%}
+<<<<<<< HEAD
 					  <li class="nav-item"><a href="{% url 'membership:information' request.session.user_n%}" class="nav-link" >My Starbucks</a></li>
+=======
+				      <li class="nav-item"><a href="{% url 'membership:information' request.session.user_n%}" class="nav-link" >My Starbucks</a></li>
+>>>>>>> master
 				      {%endif%}
 				  {%else%}
 				  <li class="nav-item"><a href="{% url 'accounts:login' %}" class="nav-link" >My Starbucks</a></li>
@@ -58,7 +62,6 @@
 				      <li class="nav-item "><a href="{% url 'accounts:signup' %}" class="nav-link">Signup</a></li>
 				      {% endif %}
 				  {% endif %}
-
 	        </ul>
 	      </div>
 		  </div>

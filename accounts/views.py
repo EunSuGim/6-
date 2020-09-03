@@ -84,6 +84,11 @@ def p_list(request):
 
 
 def p_create(request):
+
+    if not request.session['check'] == 1:
+        return HttpResponse('<script type="text/javascript">alert("로그인이필요합니다.");history.back(); '
+                            '</script>')
+
     if request.method == 'POST':
         post = Post()
         post.author_id = request.session['user_n']

@@ -49,11 +49,7 @@
           <div class="row slider-text justify-content-center align-items-center">
 
             <div class="col-md-7 col-sm-12 text-center ftco-animate">
-                {% if flag %}
-                <h1 class="mb-3 mt-5 bread">새 글 수정</h1>
-                {% else %}
             	<h1 class="mb-3 mt-5 bread">새 글 작성</h1>
-                {% endif %}
                 <p class="breadcrumbs"><span class="mr-2"><a href="{% url 'home' %}">Home</a></span> <span><a href="/accounts/list/">board</a></span></p>
             </div>
 
@@ -69,11 +65,7 @@
               {% block container %}
                 <form method="post" class="billing-form ftco-bg-dark p-3 p-md-5">
                 {% csrf_token %}
-                    {% if flag %}
-                    <h1 class="mb-3 mt-5 bread">글 수정</h1>
-                    {% else %}
                 <h3 class="mb-4 billing-heading">글 작성</h3>
-                    {% endif %}
 	          	<div class="row align-items-end">
 
                     <!-- 닉네임 -->

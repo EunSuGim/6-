@@ -28,6 +28,12 @@
     <link rel="stylesheet" href="/static/css/flaticon.css">
     <link rel="stylesheet" href="/static/css/icomoon.css">
     <link rel="stylesheet" href="/static/css/style.css">
+
+      <style>
+           body .option_color{
+                        color:black !important;
+                        }
+      </style>
   </head>
 
   <body>
@@ -43,8 +49,12 @@
           <div class="row slider-text justify-content-center align-items-center">
 
             <div class="col-md-7 col-sm-12 text-center ftco-animate">
-            	<h1 class="mb-3 mt-5 bread">글 수정</h1>
-                <p class="breadcrumbs"><span class="mr-2"><a href="index.html">Home</a></span> <span><a href="/accounts/list/">board</a></span></p>
+                {% if flag %}
+                <h1 class="mb-3 mt-5 bread">새 글 수정</h1>
+                {% else %}
+            	<h1 class="mb-3 mt-5 bread">새 글 작성</h1>
+                {% endif %}
+                <p class="breadcrumbs"><span class="mr-2"><a href="{% url 'home' %}">Home</a></span> <span><a href="/accounts/list/">board</a></span></p>
             </div>
 
           </div>
@@ -57,9 +67,9 @@
         <div class="row">
           <div class="col-xl-12 ftco-animate">
               {% block container %}
-                <form method="post" name="updated" class="billing-form ftco-bg-dark p-3 p-md-5">
+                <form method="post" class="billing-form ftco-bg-dark p-3 p-md-5">
                 {% csrf_token %}
-                <h3 class="mb-4 billing-heading">수정하기</h3>
+                    <h1 class="mb-3 mt-5 bread">글 수정</h1>
 	          	<div class="row align-items-end">
 
                     <!-- 닉네임 -->
@@ -67,24 +77,26 @@
                     <!-- 제목 -->
 	          		<div class="col-md-12">
 	                <div class="form-group">
-	                	<label for="title">제목</label>
-	                  <input name="title" type="text" class="form-control" placeholder="제목을 입력하세요.">
+	                	<label >제목</label>
+	                  <input name="title" type="text" class="form-control" placeholder="{{post.title}}">
 	                </div>
 	                </div>
                     <!-- 문의 유형 -->
                     <div class="w-100"></div>
 		            <div class="col-md-12">
 		            	<div class="form-group" name="choice2">
-		            		<label for="VOC_demand">문의유형</label>
+		            		<label >문의유형</label>
 		            		<div class="select-wrap">
 		                  <div class="icon"><span class="ion-ios-arrow-down"></span></div>
+
 		                  <select name="choice" id="choice" class="form-control">
-		                  	<option value="매장">매장</option>
-		                    <option value="시스템">시스템</option>
-		                    <option value="제품/상품">제품/상품</option>
-		                    <option value="프로모션/이벤트">프로모션/이벤트</option>
-		                    <option value="기프트카드">기프트카드</option>
-		                    <option value="고객센터">고객센터</option>
+		                  	<option class="option_color" value="매장">{{post.qtype}}</option>
+
+		                    <option class="option_color" value="시스템">시스템</option>
+		                    <option class="option_color" value="제품/상품">제품/상품</option>
+		                    <option class="option_color" value="프로모션/이벤트">프로모션/이벤트</option>
+		                    <option class="option_color" value="기프트카드">기프트카드</option>
+		                    <option class="option_color" value="고객센터">고객센터</option>
 		                  </select>
 		                </div>
 		            	</div>
@@ -94,8 +106,8 @@
 		            <div class="w-100"></div>
 		            <div class="col-md-12">
 		            	<div class="form-group">
-	                	<label for="contents">글 내용</label>
-                        <textarea name="contents" cols="100" rows="15" class="form-control" placeholder="내용을 입력하세요."></textarea>
+	                	<label>글 내용</label>
+                        <textarea name="contents" cols="100" rows="15" class="form-control" placeholder="{{ post.contents }}"></textarea>
 	                    </div>
 		            </div>
 
@@ -103,7 +115,7 @@
 		            <div class="w-100"></div>
 		            <div class="col-md-6">
 	                <div class="form-group">
-	                	<label for="phone">연락처</label>
+	                	<label>연락처</label>
 	                  <input type="text" class="form-control" placeholder="ex) 010-1234-5678">
 	                </div>
 	                </div>
@@ -116,7 +128,6 @@
                     </div>
                     <!-- 고객의소리 등록 버튼 -->
                     <button class="btn btn-primary py-3 px-5" onclick="create()">수정하기</button>
-
                     </div>
 <!--                <div class="w-100"></div>-->
 <!--                <div class="col-md-12">-->
@@ -137,11 +148,7 @@
 
 
 
-          </div>
-        </div>
-      </div>
-    </footer>
-
+  {% include "footer.html" %}
 
 
   <!-- loader -->
@@ -167,7 +174,7 @@
   <script src="/static/js/main.js"></script>
   <script>
       function create(){
-        alert("수정완료!");
+        alert("작성완료!");
       }
 
   </script>

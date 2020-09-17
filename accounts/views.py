@@ -135,9 +135,21 @@ def p_update(request, post_id):
 
     else:
         # 작성자 : 김은수
+
         flag = True
 
-        return render(request, 'create_voc.html',{"flag" : flag})
+        comment = post.comment_set.all()
+        comment.author = request.session['user_n']
+        comment_form = CommentForm(request.POST)
+        post_form = PostForm(instance=post)
+        context = {'comment_list': comment, 'post_form': post_form, 'comment_form': comment_form, 'post': post, "flag" : flag}
+
+        for i in post_form.fields:
+            post_form.fields[i].disabled=True
+
+
+
+        return render(request, 'update.html',context)
     # ------------------------
 
 

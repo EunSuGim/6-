@@ -78,7 +78,7 @@
 	          		<div class="col-md-12">
 	                <div class="form-group">
 	                	<label >제목</label>
-	                  <input name="title" type="text" class="form-control" placeholder="{{post.title}}">
+	                  <input name="title" type="text" class="form-control" placeholder="{{post.title}}" value="{{post.title}}">
 	                </div>
 	                </div>
                     <!-- 문의 유형 -->
@@ -107,7 +107,7 @@
 		            <div class="col-md-12">
 		            	<div class="form-group">
 	                	<label>글 내용</label>
-                        <textarea name="contents" cols="100" rows="15" class="form-control" placeholder="{{ post.contents }}"></textarea>
+                        <textarea name="contents" cols="100" rows="15" class="form-control" placeholder="{{ post.contents }}"  >{{post.contents}}</textarea>
 	                    </div>
 		            </div>
 

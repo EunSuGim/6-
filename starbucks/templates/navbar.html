@@ -19,16 +19,15 @@
 				  {% else %}
 				  <li class="nav-item"><a href="{% url 'order:menu' %}" class="nav-link">Menu</a></li>
 				  {% endif%}
-				  <!-------My Starbucks------->
+				  				    <!-------My Starbucks------->
 				  {% if request.session.check == 1%}
-				      {% if request.resolver_match.url_name == 'information' %}
-				      <li class="nav-item active"><a href="{% url 'membership:information' request.session.user_n%}" class="nav-link" >My Starbucks</a></li>
+				      {% if request.resolver_match.url_name == 'information' or request.resolver_match.url_name == 'history'%}
+				          <li class="nav-item active"><a href="{% url 'membership:information' request.session.user_n%}" class="nav-link" >My Starbucks</a></li>
 				      {%else%}
-					  <li class="nav-item"><a href="{% url 'membership:information' request.session.user_n%}" class="nav-link" >My Starbucks</a></li>
-
+				  	      <li class="nav-item"><a href="{% url 'membership:information' request.session.user_n%}" class="nav-link" >My Starbucks</a></li>
 				      {%endif%}
 				  {%else%}
-				  <li class="nav-item"><a href="{% url 'accounts:login' %}" class="nav-link" >My Starbucks</a></li>
+				      <li class="nav-item"><a href="{% url 'accounts:login' %}" class="nav-link" >My Starbucks</a></li>
 				  {% endif %}
 				  <!-----------voc------------>
 				  {% if request.resolver_match.url_name == 'voc' %}
@@ -44,7 +43,7 @@
 				  	  <li class="nav-item"><a href="{% url 'accounts:logout' %}" class="nav-link">Logout</a></li>
 				      {% endif %}
 				  <!-----------cart------------>
-				  <li class="nav-item cart"><a href="{% url 'order:cart' %}" class="nav-link"><span class="icon icon-shopping_cart"></span><span class="bag d-flex justify-content-center align-items-center"><small>1</small></span></a></li>
+				  <li class="nav-item cart"><a href="{% url 'order:cart' %}" class="nav-link"><span class="icon icon-shopping_cart"></span></a></li>
 				  <!-----------login----------->
 				  {% else %}
 				      {% if request.resolver_match.url_name == 'login' %}

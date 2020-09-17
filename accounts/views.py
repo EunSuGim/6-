@@ -45,7 +45,7 @@ def sign_up(request):
                             user_name=request.POST['user_name'], phone_num=request.POST['phone_num'])
                 user.save()
                 request.session['user_id'] = user_id
-                request.session['check'] = 1    # 로그인 성공시 화면 넘어가기
+                request.session['check'] = 0    # 로그인 성공시 화면 넘어가기
 
 
                 return redirect('/')

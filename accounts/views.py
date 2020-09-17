@@ -102,7 +102,8 @@ def p_create(request):
         # post = Post(author=request.POST['author'], title=request.POST['title'], contents=request.POST['contents'])
 
     else:
-        return render(request, 'create_voc.html')
+        flag = False
+        return render(request, 'create_voc.html', {"flag" : flag})
 
 
 def p_delete(request, post_id):
@@ -122,7 +123,6 @@ def p_delete(request, post_id):
 def p_update(request, post_id):
 
     post = Post.objects.get(id=post_id)
-    print(request.POST['updated'])
 
     if request.method == 'POST':
         post.author_id = request.session['user_n']
@@ -131,10 +131,14 @@ def p_update(request, post_id):
         post.qtype = request.POST['choice']
         post.created_date = datetime.now()
         post.save()
-        return redirect('/accounts/list/' + str(post_id))
+        return redirect('accounts:list')
 
     else:
-        return render(request, 'update.html')
+        # 작성자 : 김은수
+        flag = True
+
+        return render(request, 'create_voc.html',{"flag" : flag})
+    # ------------------------
 
 
     # if request.method == 'POST':
@@ -150,7 +154,9 @@ def p_detail(request, post_id):
     post = get_object_or_404(Post, pk=post_id)
 
     if request.method == 'POST':
+
         comment = Comment()
+
         comment.text = request.POST['text']
         comment.post = post
         comment.created_date = datetime.now()

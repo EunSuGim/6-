@@ -43,7 +43,7 @@
 
             <div class="col-md-7 col-sm-12 text-center ftco-animate">
             	<h1 class="mb-3 mt-5 bread">상세보기</h1>
-                <p class="breadcrumbs"><span class="mr-2"><a href="index.html">Home</a></span> <span><a href="/accounts/list/">board</a></span></p>
+                <p class="breadcrumbs"><span class="mr-2"><a href="{% url 'home' %}">Home</a></span> <span><a href="/accounts/list/">board</a></span></p>
             </div>
 
           </div>
@@ -72,7 +72,7 @@
 
                 {% if request.session.user_n == post.author_id %}
                     <a href="{% url 'accounts:delete' post.id %}" class="btn btn-primary btn-outline-primary">삭제</a>
-                    <button type="submit" class="btn btn-primary btn-outline-primary">수정</button>
+                     <a href="{% url 'accounts:update' post.id %}" class="btn btn-primary btn-outline-primary">수정</a>
                 {% endif %}
                 </form>
                 <br>
@@ -106,9 +106,7 @@
                     </div>
             </section> <!-- END of SECTION 1 -->
               {% endblock %}
-<<<<<<< HEAD
         </div>
-=======
           </div>
         </div>
       </div>
@@ -118,7 +116,6 @@
 
 
   {% include "footer.html" %}
->>>>>>> master
 
 
 

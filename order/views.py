@@ -115,9 +115,9 @@ def detail(request, product_cd):
         # ------------ 근웅 ------------
         histories = History.objects.filter(completed=True)
         reviews = []
-        # for history in histories:
-        #     if history.cd == product_cd and history.category == category:
-        #         reviews.append(get_object_or_404(Review, history_id=history.id))
+        for history in histories:
+            if history.cd == product_cd and history.category == category:
+                reviews.append(get_object_or_404(Review, history_id=history.id))
         # -----------------------------
 
         count = 0

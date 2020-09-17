@@ -48,7 +48,7 @@ def sign_up(request):
                 request.session['check'] = 0    # 로그인 성공시 화면 넘어가기
 
 
-                return redirect('/')
+                return redirect('accounts:login')
             else :
                 request.session['tmp_flag'] = 0
                 messages.add_message(request, messages.INFO, '비밀번호가 일치하지 않습니다.')

@@ -90,6 +90,9 @@ def p_create(request):
                             '</script>')
 
     if request.method == 'POST':
+        if request.POST['title'] == '':
+            return HttpResponse('<script type="text/javascript">alert("제목을 입력하세요.");history.back(); '
+                                '</script>')
         post = Post()
         post.author_id = request.session['user_n']
         post.title = request.POST['title']
@@ -125,6 +128,9 @@ def p_update(request, post_id):
     post = Post.objects.get(id=post_id)
 
     if request.method == 'POST':
+        if request.POST['title'] == '':
+            return HttpResponse('<script type="text/javascript">alert("제목을 입력하세요.");history.back(); '
+                                '</script>')
         post.author_id = request.session['user_n']
         post.title = request.POST['title']
         post.contents = request.POST['contents']
